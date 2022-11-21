@@ -1,32 +1,48 @@
 #ttk is a submodule allowing for newer widgets in Tk version 8.5
 from tkinter import *
-from tkinter import ttk
 import os
-from os import listdir
 
 #initialization of the window/GUI
 mainwindow = Tk()
 mainwindow.title("Fractal Art")
 mainwindow.attributes("-fullscreen", True)
+mainwindow.configure(background="#FFD700")
 
-frame = Frame(mainwindow, height=1000, width=1000, bg="#D3D3D3")
-frame.place(relwidth=0.75,relheight=0.8, rely=0.1, relx=0.1)
+#frame that will include all the widgets/UI
+fractal_frame = Frame(mainwindow, height=1000, width=1000, bg="#333333")
+fractal_frame.place(relwidth=0.8,relheight=0.8, rely=0.1, relx=0.1)
+frac_label = Label(fractal_frame, text="FRACTAL ART", 
+            font=("Verdana italic",60), bg="#333333", fg="#f00")
+frac_label.pack()
 
 #Goes through all the fractal pictures and puts them as images on the buttons
-folder = "fractal_pictures"
-for picture_path in os.listdir(folder):
-    img = PhotoImage(file=f"fractal_pictures/{picture_path}").subsample(7, 7)
-    label = Label(image=img)
-    label.image = img
-    fractal_button = Button(frame, image=img)
-    fractal_button.pack()
+fractal_folder = "fractal_pictures"
+i = 100
+for picture_path in os.listdir(fractal_folder):
+    if picture_path != ".DS_Store":
+        img = PhotoImage(file=f"fractal_pictures/{picture_path}").subsample(4, 4)
+        label = Label(image=img)
+        label.image = img
+        fractal_button = Button(fractal_frame, image=img)
+        fractal_button.place(x=900, y=i)
+        i+=200
+    else:
+        continue
 
-# for picture_path in os.listdir(folder):
-#     add = PhotoImage(file=f"fractal_pictures/{picture_path}")
-#     label = Label(image=add)
-#     label.image = add
-#     fractal_button = Button(frame, image = add)
-#     fractal_button.pack()
+frame_folder = "picture_frames"
+t = 100
+for picture_path in os.listdir(frame_folder):
+    if picture_path != ".DS_Store":
+        img = PhotoImage(file=f"picture_frames/{picture_path}").subsample(4, 4)
+        label = Label(image=img)
+        label.image = img
+        fractal_button = Button(fractal_frame, image=img)
+        fractal_button.place(x=100, y=t)
+        t+=200
+    else:
+        continue
+
+
 
 
 mainwindow.mainloop()
