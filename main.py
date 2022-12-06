@@ -9,7 +9,7 @@ mainwindow = Tk()
 mainwindow.title("Fractal Art")
 mainwindow.attributes("-fullscreen", True)
 mainwindow.configure(background="#FFD700")
-    
+
 #frame that will include all the widgets/UI
 fractal_frame = Frame(mainwindow, highlightbackground="#ADD8E6", 
                     highlightthickness=20, height=1000, width=1000, bg="#333333")
@@ -23,9 +23,9 @@ fractal_canvas = Canvas(fractal_frame, bg="white", height=400, width=500)
 fractal_canvas.pack()
 
 #sierpinski = sierpinski(fractal_canvas, 150, 275, 100, 3, "blue")
-#sierpinski.start_sierpinski()
+#command = sierpinski.start_sierpinski()
 
-koch = test_koch2(fractal_canvas, 0, 200, 500, 400)
+koch = test_koch2(fractal_canvas, 0, 200, 500, 400, 2, "black")
 koch.draw_base()
 
 #UI interaction underneath canvas
@@ -34,6 +34,11 @@ gen_label = Label(fractal_frame, text="Generation", width=10)
 gen_label.place(x=500,y=500)
 num_gen.place(x=500,y=525)
 
+#background image
+#background_img = PhotoImage(file="17495.png")
+#background_lbl = Label(mainwindow, image=background_img)
+#background_lbl.pack()
+
 #Goes through all the fractal pictures and puts them as images on the buttons
 fractal_folder = "fractal_pictures"
 i = 100
@@ -41,14 +46,17 @@ for picture_path in os.listdir(fractal_folder):
     if picture_path != ".DS_Store":
         img = PhotoImage(file=f"fractal_pictures/{picture_path}").subsample(4, 4)
 
-        #keeps a reference of the label image so that it can be displayed
+        #keeps a reference of the image so that it can be displayed and is not deleted
         label = Label(image=img)
         label.image = img
+
         fractal_button = Button(fractal_frame, image=img)
         fractal_button.place(x=900, y=i)
         i+=200
     else:
         continue
+
+
 
 #goes through the picture frames and puts them as images on the buttons
 frame_folder = "picture_frames"
