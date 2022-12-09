@@ -62,11 +62,20 @@ class test_koch2:
     def draw_line(self, x0, y0, x1, y1):
         self.canv.create_line(x0, y0, x1, y1, fill=self.colour)
 
+<<<<<<< Updated upstream
     #paraphrase this
     def rotate_points(self, xa, ya, xb, yb, angle):
         sin, cos = math.sin(angle), 0.5
         x_c = cos*(xb-xa)-sin*(yb-ya) + xa
         y_c = sin*(xb-xa)+cos*(yb-ya) + ya
+=======
+    # paraphrase this
+    def rotate_points_60(self, xa, ya, xb, yb, angle):
+        # uses the rotation matrix to calculate the coordinates of the apex of the triangle which is xc, yc
+        sine, cosine = sin(radians(angle)), cos(radians(angle))
+        x_c = cosine*(xb-xa)-sine*(yb-ya) + xa
+        y_c = sine*(xb-xa)+cosine*(yb-ya) + ya
+>>>>>>> Stashed changes
         return x_c, y_c
 
     def trisection(self, x_0, y_0, x_1, y_1):
@@ -93,7 +102,37 @@ class test_koch2:
         self.draw_line(0, 200, xa, ya)
         self.draw_line(xa, ya, xc, yc)
         self.draw_line(xc, yc, xb, yb)
+<<<<<<< Updated upstream
         self.draw_line(xb, yb, 500, 200)
+=======
+        self.draw_line(xb, yb, self.canv_width, self.y)
+
+    def distance(self, sx, sy, ex, ey):
+        #uses distance formula
+        return sqrt(pow(ex-sx, 2) + pow(ey-sy, 2))
+
+    def draw_koch(self, sx, sy, ex, ey, angle):
+        px, py, qx, qy, rx, ry = 0, 0, 0, 0, 0, 0
+        ncalls = 0
+        ncalls += 1
+        length = self.distance(sx, sy, ex, ey)/3
+        print(length)
+        if length < 10:
+            self.draw_line(sx, sy, ex, ey)
+            return
+        else:
+            px = sx + length*cos(radians(angle))
+            py = sy + length*sin(radians(angle+180))
+            qx = px + length*cos(radians(angle+60))
+            qy = py + length*sin(radians(angle+60+180))
+            rx = qx + length*cos(radians(angle-60))
+            ry = qy + length*sin(radians(angle-60+180))
+            self.draw_koch(sx, sy, px, py, angle)
+            self.draw_koch(px, py, qx, qy, angle+60)
+            self.draw_koch(qx, qy, rx, ry, angle-60)
+            self.draw_koch(rx, ry, ex, ey, angle)
+            
+>>>>>>> Stashed changes
 
 # for debugging
 #if __name__ == "__main__":
