@@ -1,14 +1,15 @@
 from math import sqrt  
 from tkinter import * 
 
-class sierpinski:
-    def __init__(self, canvas, xpos, ypos, size, depth, colour):
+class Sierpinski:
+    def __init__(self, canvas, xpos, ypos, size, depth, color):
+        self.name = 'sierpinski triangle'
         self.canvas = canvas
         self.xpos = xpos
         self.ypos = ypos
         self.size = size
         self.depth = depth
-        self.colour = colour
+        self.color = color
     
     def start_sierpinski(self): 
         self.draw_sierpinski(self.size, self.xpos, self.ypos, self.depth)
@@ -26,6 +27,6 @@ class sierpinski:
     def draw_triangle(self, size, x1, y1):
         x2, y2 = (x1 + size), y1
         x3, y3 = (x1 + size/2), (y1 - sqrt((pow(size, 2) - pow((size/2), 2))))
-        self.canvas.create_line(x1, y1, x2, y2, fill=self.colour)
-        self.canvas.create_line(x1, y1, x3, y3, fill=self.colour)
-        self.canvas.create_line(x2, y2, x3, y3, fill=self.colour)
+        self.canvas.create_line(x1, y1, x2, y2, fill=self.color)
+        self.canvas.create_line(x1, y1, x3, y3, fill=self.color)
+        self.canvas.create_line(x2, y2, x3, y3, fill=self.color)
