@@ -1,19 +1,21 @@
 #ttk is a submodule allowing for newer widgets in Tk version 8.5
 from tkinter import *
 import os
+
 from sierpinski import *
 from koch import *
+from controller import * 
 
 #initialization of the window/GUI
 mainwindow = Tk()
 mainwindow.title("Fractal Art")
 mainwindow.attributes("-fullscreen", True)
 mainwindow.configure(background="#FFD700")
-
+    
 #frame that will include all the widgets/UI
 fractal_frame = Frame(mainwindow, highlightbackground="#ADD8E6", 
                     highlightthickness=20, height=1000, width=1000, bg="#333333")
-fractal_frame.place(relwidth=0.8,relheight=0.8, rely=0.1, relx=0.1)
+fractal_frame.place(relwidth=0.90,relheight=0.90, rely=0.05, relx=0.05)
 frac_label = Label(fractal_frame, text="FRACTAL MUSEUM", 
             font=("Verdana italic",60), bg="#333333", fg="#f00")
 frac_label.pack()
@@ -22,11 +24,13 @@ frac_label.pack()
 fractal_canvas = Canvas(fractal_frame, bg="white", height=400, width=500)
 fractal_canvas.pack()
 
+controller = Controller(fractal_canvas, fractal_frame, [], 5)
+controller.draw_fractals()
 #sierpinski = sierpinski(fractal_canvas, 150, 275, 100, 3, "blue")
 #command = sierpinski.start_sierpinski()
 
-koch = koch_snowflake(fractal_canvas, 0, 200, 500, 400, 2, "blue", 4)
-koch.draw_koch(0, 200, 500, 200, 60)
+koch = test_koch2(fractal_canvas, 0, 200, 500, 400, 2, "black")
+koch.draw_base()
 
 #UI interaction underneath canvas
 num_gen = Entry(fractal_frame, width=10)
@@ -40,16 +44,44 @@ num_gen.place(x=500,y=525)
 #background_lbl.pack()
 
 #Goes through all the fractal pictures and puts them as images on the buttons
-fractal_folder = "fractal_pictures"
-i = 100
-for picture_path in os.listdir(fractal_folder):
-    if picture_path != ".DS_Store":
-        img = PhotoImage(file=f"fractal_pictures/{picture_path}").subsample(4, 4)
+# fractal_folder = "fractal_pictures"
+# i = 100
+# for picture_path in os.listdir(fractal_folder):
+#     if picture_path != ".DS_Store":
+#         img = PhotoImage(file=f"fractal_pictures/{picture_path}").subsample(4, 4)
 
-        #keeps a reference of the image so that it can be displayed and is not deleted
+#         #keeps a reference of the label image so that it can be displayed
+#         label = Label(image=img)
+#         label.image = img
+#         fractal_button = Button(fractal_frame, image=img)
+#         fractal_button.place(x=900, y=i)
+#         i+=200
+#     else:
+#         continue
+
+
+sierpinski_image = PhotoImage(file='fractal_pictures/sierpinski.png').subsample(4, 4)
+koch_image = PhotoImage(file='fractal_pictures/koch_snowflake.png').subsample(4, 4)
+box_image = PhotoImage(file='fractal_pictures/box_fractal.png').subsample(4, 4)
+
+siepinski_label = Label(image=sierpinski_image)
+sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski)
+sierpinski_button.place(x=200, y=100)
+
+koch_label = Label(image=koch_image)
+koch_button = Button(fractal_frame, image=koch_image)
+koch_button.place(x=200, y=300)
+
+
+box_label = Label(image=box_image)
+box_button = Button(fractal_frame, image=box_image)
+box_button.place(x=200, y=500)
+
+
+
+        #keeps a reference of the label image so that it can be displayed
         label = Label(image=img)
         label.image = img
-
         fractal_button = Button(fractal_frame, image=img)
         fractal_button.place(x=900, y=i)
         i+=200
@@ -69,12 +101,13 @@ for picture_path in os.listdir(frame_folder):
         label = Label(image=img)
         label.image = img
         fractal_button = Button(fractal_frame, image=img)
-        fractal_button.place(x=100, y=t)
+        fractal_button.place(x=30, y=t)
         t+=200
     else:
         continue
 
 mainwindow.mainloop()
+
 
 # def color_the_canvas(color):
 #     r = ("0"+hex(int(scale_red.get()))[2:])[-2:]
