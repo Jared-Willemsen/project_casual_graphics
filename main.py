@@ -2,6 +2,7 @@
 from tkinter import *
 import os
 
+#Files we created for each of the different fractals
 from sierpinski import *
 from koch import *
 from controller import * 
@@ -29,8 +30,8 @@ controller.draw_fractals()
 #sierpinski = sierpinski(fractal_canvas, 150, 275, 100, 3, "blue")
 #command = sierpinski.start_sierpinski()
 
-koch = test_koch2(fractal_canvas, 0, 200, 500, 400, 2, "black")
-koch.draw_base()
+koch = koch_snowflake(fractal_canvas, 0, 200, 500, 400, 2, "black")
+koch.draw_koch(0, 200, 500, 200, 0, 4)
 
 #UI interaction underneath canvas
 num_gen = Entry(fractal_frame, width=10)
@@ -43,23 +44,8 @@ num_gen.place(x=500,y=525)
 #background_lbl = Label(mainwindow, image=background_img)
 #background_lbl.pack()
 
-#Goes through all the fractal pictures and puts them as images on the buttons
-# fractal_folder = "fractal_pictures"
-# i = 100
-# for picture_path in os.listdir(fractal_folder):
-#     if picture_path != ".DS_Store":
-#         img = PhotoImage(file=f"fractal_pictures/{picture_path}").subsample(4, 4)
 
-#         #keeps a reference of the label image so that it can be displayed
-#         label = Label(image=img)
-#         label.image = img
-#         fractal_button = Button(fractal_frame, image=img)
-#         fractal_button.place(x=900, y=i)
-#         i+=200
-#     else:
-#         continue
-
-
+#Buttons for the fractals and the picture frames
 sierpinski_image = PhotoImage(file='fractal_pictures/sierpinski.png').subsample(4, 4)
 koch_image = PhotoImage(file='fractal_pictures/koch_snowflake.png').subsample(4, 4)
 box_image = PhotoImage(file='fractal_pictures/box_fractal.png').subsample(4, 4)
@@ -72,21 +58,10 @@ koch_label = Label(image=koch_image)
 koch_button = Button(fractal_frame, image=koch_image)
 koch_button.place(x=200, y=300)
 
-
 box_label = Label(image=box_image)
 box_button = Button(fractal_frame, image=box_image)
 box_button.place(x=200, y=500)
 
-
-
-        #keeps a reference of the label image so that it can be displayed
-        label = Label(image=img)
-        label.image = img
-        fractal_button = Button(fractal_frame, image=img)
-        fractal_button.place(x=900, y=i)
-        i+=200
-    else:
-        continue
 
 
 
@@ -107,7 +82,6 @@ for picture_path in os.listdir(frame_folder):
         continue
 
 mainwindow.mainloop()
-
 
 # def color_the_canvas(color):
 #     r = ("0"+hex(int(scale_red.get()))[2:])[-2:]
