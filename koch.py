@@ -7,11 +7,11 @@ from math import *
 # https://craftofcoding.wordpress.com/2019/11/26/recursive-patterns-the-koch-curve-ii/
 
 class koch_snowflake:
-    def __init__(self, canv, x, y, depth, color):
+    def __init__(self, canv, x, y, depth, colour, width):
         self.canv = canv
         self.x = x
         self.y = y
-        self.color = color
+        self.colour = colour
         self.depth = depth
         self.width = width
 

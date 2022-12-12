@@ -68,6 +68,8 @@ num_gen.place(x=500,y=525)
 sierpinski_image = PhotoImage(file='fractal_pictures/sierpinski.png').subsample(4, 4)
 koch_image = PhotoImage(file='fractal_pictures/koch_snowflake.png').subsample(4, 4)
 box_image = PhotoImage(file='fractal_pictures/box_fractal.png').subsample(4, 4)
+up_image = PhotoImage(file='button_pictures/up_arrow.png').subsample(2,3)
+down_image = PhotoImage(file='button_pictures/down_arrow.png').subsample(2,3)
 
 siepinski_label = Label(image=sierpinski_image)
 sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski)
@@ -81,6 +83,15 @@ box_label = Label(image=box_image)
 box_button = Button(fractal_frame, image=box_image)
 box_button.place(x=200, y=500)
 
+up_label = Label(image=up_image)
+selection_button_up = Button(fractal_frame, image=up_image, command=controller.select_previous).pack()
+
+down_lable = Label(image=down_image)
+selection_button_down = Button(fractal_frame, image=down_image, command=controller.select_next).pack()
+
+increase_size_button = Button(fractal_frame, text="+", command=controller.increase_size).pack()
+decrease_size_button = Button(fractal_frame, text="-", command=controller.decrease_size).pack()
+
 
 
 #goes through the picture frames and puts them as images on the buttons
@@ -88,6 +99,7 @@ frame_folder = "picture_frames"
 t = 100
 for picture_path in os.listdir(frame_folder):
     if picture_path != ".DS_Store":
+
         img = PhotoImage(file=f"picture_frames/{picture_path}").subsample(4, 4)
 
         #keeps a reference of the label image so that it can be displayed
