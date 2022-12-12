@@ -1,43 +1,45 @@
 from tkinter import *
 from math import *
+
 # useful links: https://www.adrian.idv.hk/2017-12-20-koch/
 #               https://www.youtube.com/watch?v=CjdxjepQYCU
+# https://craftofcoding.wordpress.com/2019/11/19/recursive-patterns-the-koch-curve-i/
+# https://craftofcoding.wordpress.com/2019/11/26/recursive-patterns-the-koch-curve-ii/
 
 class koch_snowflake:
-    def __init__(self, canv, x, y, canv_width, canv_length, depth, colour):
+    def __init__(self, canv, x, y, depth, color):
         self.canv = canv
         self.x = x
         self.y = y
-        self.canv_width = canv_width
-        self.canv_length = canv_length
-        self.colour = colour
+        self.color = color
         self.depth = depth
 
     def draw_line(self, x0, y0, x1, y1):
-        self.canv.create_line(x0, y0, x1, y1, fill=self.colour)
+        self.canv.create_line(x0, y0, x1, y1, fill=self.color)
     
-    def distance(self, sx, sy, ex, ey):
+    def distance(self, s_x, s_y, e_x, e_y):
         #uses distance formula
-        return sqrt(pow(ex-sx, 2) + pow(ey-sy, 2))
+        return sqrt(pow(e_x-s_x, 2) + pow(e_y-s_y, 2))
 
-    def draw_koch(self, sx, sy, ex, ey, angle, depth):
-        px, py, qx, qy, rx, ry = 0, 0, 0, 0, 0, 0
-        length = self.distance(sx, sy, ex, ey)/3
+    def draw_koch(self, s_x, s_y, e_x, e_y, angle, depth):
+
+        p_x, p_y, q_x, q_y, r_x, r_y = 0, 0, 0, 0, 0, 0
+        length = self.distance(s_x, s_y, e_x, e_y)/3
         
         if depth == 0:
-            self.draw_line(sx, sy, ex, ey)
+            self.draw_line(s_x, s_y, e_x, e_y)
             return
         else:
-            px = sx + length*cos(radians(angle))
-            py = sy + length*sin(radians(angle+180))
-            qx = px + length*cos(radians(angle+60))
-            qy = py + length*sin(radians(angle+60+180))
-            rx = qx + length*cos(radians(angle-60))
-            ry = qy + length*sin(radians(angle-60+180))
-            self.draw_koch(sx, sy, px, py, angle, depth-1)
-            self.draw_koch(px, py, qx, qy, angle+60, depth-1)
-            self.draw_koch(qx, qy, rx, ry, angle-60, depth-1)
-            self.draw_koch(rx, ry, ex, ey, angle, depth-1)    
+            p_x = s_x + length*cos(radians(angle))
+            p_y = s_y + length*sin(radians(angle+180))
+            q_x = p_x + length*cos(radians(angle+60))
+            q_y = p_y + length*sin(radians(angle+60+180))
+            r_x = q_x + length*cos(radians(angle-60))
+            r_y = q_y + length*sin(radians(angle-60+180))
+            self.draw_koch(s_x, s_y, p_x, p_y, angle, depth-1)
+            self.draw_koch(p_x, p_y, q_x, q_y, angle+60, depth-1)
+            self.draw_koch(q_x, q_y, r_x, r_y, angle-60, depth-1)
+            self.draw_koch(r_x, r_y, e_x, e_y, angle, depth-1)    
 
 # for debugging
 #if __name__ == "__main__":
