@@ -7,7 +7,8 @@ class Controller:
         self.frame = frame
         self.fractals = fractals
         self.max_fractals = max_fractals
-        self.menu_container = Frame(self.frame, height=500, width=250, bg='white')
+        self.menu_container = Frame(self.frame, height=500, width=250, bg='white', 
+        highlightthickness = 10, highlightbackground="#ef2f2f")
         self.menu_container.pack_propagate(False)
         self.menu_container.place(x=900, y=100)
         self.menu_item_list = [] 
