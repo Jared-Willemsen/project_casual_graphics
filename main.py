@@ -58,6 +58,12 @@ color_button.place(x=500, y=600)
 controller = Controller(fractal_canvas, fractal_frame, [], 5)
 controller.draw_fractals()
 
+koch = Koch_Snowflake(fractal_canvas, 0, 200, 5, 5, "blue")
+koch.start_koch()
+
+box = Box(fractal_canvas, 0, 200, 5, "blue")
+box.draw_box(0, 200, 500, 400)
+
 #UI interaction underneath canvas
 num_gen = Entry(fractal_frame, width=10)
 gen_label = Label(fractal_frame, text="Generation", width=10)
