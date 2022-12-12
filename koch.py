@@ -1,29 +1,26 @@
 from tkinter import *
 from math import *
 
+from fractal_template import *
+
 # useful links: https://www.adrian.idv.hk/2017-12-20-koch/
 #               https://www.youtube.com/watch?v=CjdxjepQYCU
 # https://craftofcoding.wordpress.com/2019/11/19/recursive-patterns-the-koch-curve-i/
 # https://craftofcoding.wordpress.com/2019/11/26/recursive-patterns-the-koch-curve-ii/
 
-class Koch_Snowflake:
-    def __init__(self, canv, x, y, size, depth, color):
-        self.canv = canv
-        self.x = x
-        self.y = y
-        self.size = size
-        self.color = color
-        self.depth = depth
+class Koch_Snowflake(FractalTemplate):
+    def __init__(self, canvas, xpos, ypos, size, depth, color, name='koch snowflake'):
+        super().__init__(name, canvas, xpos, ypos, size, depth, color)
 
     def draw_line(self, x0, y0, x1, y1):
-        self.canv.create_line(x0, y0, x1, y1, fill=self.color)
+        self.canvas.create_line(x0, y0, x1, y1, fill=self.color)
     
     def distance(self, s_x, s_y, e_x, e_y):
         #calculates distance between the starting and end points
         return sqrt(pow(e_x-s_x, 2) + pow(e_y-s_y, 2))
 
     def start_koch(self):
-        self.draw_koch(self.x, self.y, 500, 200, 0, self.depth)
+        self.draw_koch(self.xpos, self.ypos, 500, 200, 0, self.depth)
 
     def draw_koch(self, s_x, s_y, e_x, e_y, angle, depth):
 

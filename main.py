@@ -78,11 +78,11 @@ up_image = PhotoImage(file='button_pictures/up_arrow.png').subsample(2,3)
 down_image = PhotoImage(file='button_pictures/down_arrow.png').subsample(2,3)
 
 siepinski_label = Label(image=sierpinski_image)
-sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski)
+sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski_triangle)
 sierpinski_button.place(x=200, y=100)
 
 koch_label = Label(image=koch_image)
-koch_button = Button(fractal_frame, image=koch_image)
+koch_button = Button(fractal_frame, image=koch_image, command=controller.create_koch_snowflake)
 koch_button.place(x=200, y=300)
 
 box_label = Label(image=box_image)

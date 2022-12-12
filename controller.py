@@ -1,4 +1,5 @@
 from sierpinski import *
+from koch import *
 import tkinter
 
 class Controller: 
@@ -35,17 +36,26 @@ class Controller:
             self.draw_fractals()
             self.fractals[self.selected_fractal].update_menu_item()
         
-    def create_sierpinski(self):
+    def create_sierpinski_triangle(self):
         if len(self.fractals) < self.max_fractals:
             new_sierpinski = Sierpinski(self.canvas, 0, 400, 100, 0, 'black')
             self.fractals.append(new_sierpinski)
             self.draw_fractals()
             new_sierpinski.create_menu_item(self.menu_container)
+    
+    def create_koch_snowflake(self):
+        if len(self.fractals) < self.max_fractals:
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 5, "blue")
+            self.fractals.append(new_koch)
+            self.draw_fractals()
+            new_koch.create_menu_item(self.menu_container)
 
     def draw_fractals(self):
         self.canvas.delete('all')
         for fractal in self.fractals:
             if fractal.name == 'sierpinski triangle':
                  fractal.start_sierpinski()
+            if fractal.name == 'koch snowflake':
+                fractal.start_koch()
     
         
