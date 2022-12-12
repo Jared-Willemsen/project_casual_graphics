@@ -30,9 +30,6 @@ controller.draw_fractals()
 #sierpinski = sierpinski(fractal_canvas, 150, 275, 100, 3, "blue")
 #command = sierpinski.start_sierpinski()
 
-koch = koch_snowflake(fractal_canvas, 0, 200, 500, 400, 2, "black")
-koch.draw_koch(0, 200, 500, 200, 0, 4)
-
 #UI interaction underneath canvas
 num_gen = Entry(fractal_frame, width=10)
 gen_label = Label(fractal_frame, text="Generation", width=10)
@@ -61,7 +58,6 @@ koch_button.place(x=200, y=300)
 box_label = Label(image=box_image)
 box_button = Button(fractal_frame, image=box_image)
 box_button.place(x=200, y=500)
-
 
 
 
