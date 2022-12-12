@@ -47,3 +47,5 @@ class Controller:
         for fractal in self.fractals:
             if fractal.name == 'sierpinski triangle':
                  fractal.start_sierpinski()
+    
+        
