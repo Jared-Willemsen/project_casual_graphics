@@ -14,8 +14,7 @@ class Controller:
         self.size_slider = Scale(self.frame, from_=10, to=500, orient=HORIZONTAL, command=self.change_size)
         self.size_slider.pack()
 
-        self.menu_container = Frame(self.frame, height=500, width=250, bg='white', 
-        highlightthickness = 10, highlightbackground="#ef2f2f")
+        self.menu_container = Frame(self.frame, height=500, width=250, bg='white', highlightthickness = 10, highlightbackground="#ef2f2f")
         self.menu_container.pack_propagate(False)
         self.menu_container.place(x=900, y=100)
 

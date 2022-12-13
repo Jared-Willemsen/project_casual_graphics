@@ -42,10 +42,6 @@ def canvas_color():
     #color = tkinter.colorchooser.askcolor(title="Tkinter color chooser")
     #return color[1]
 
-#button for choosing canvas color
-color_button = Button(fractal_frame, text="Canvas Background", command=canvas_color)
-color_button.place(x=500, y=600)
-
 #button for choosing fractal color
 #frac_color = Button(fractal_frame, text="Fractal Color", command=fractal_color)
 #frac_color.place(x=500, y=550)
@@ -59,13 +55,15 @@ koch.start_koch()
 box = Box(fractal_canvas, 0, 200, 5, "blue")
 box.draw_box(0, 200, 500, 400)
 
-#Buttons for the fractals and the picture frames
+#UI ELEMENTS------------------------------------------------------------------------------------------------------------------
+#button pictures
 sierpinski_image = PhotoImage(file='fractal_pictures/sierpinski.png').subsample(4, 4)
 koch_image = PhotoImage(file='fractal_pictures/koch_snowflake.png').subsample(4, 4)
 box_image = PhotoImage(file='fractal_pictures/box_fractal.png').subsample(4, 4)
 up_image = PhotoImage(file='button_pictures/up_arrow.png').subsample(5,5)
 down_image = PhotoImage(file='button_pictures/down_arrow.png').subsample(5,5)
 
+#buttons for making a new fractal
 siepinski_label = Label(image=sierpinski_image)
 sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski_triangle)
 sierpinski_button.place(x=200, y=100)
@@ -78,15 +76,22 @@ box_label = Label(image=box_image)
 box_button = Button(fractal_frame, image=box_image)
 box_button.place(x=200, y=500)
 
+#buttons for changing selection
 up_label = Label(image=up_image)
 selection_button_up = Button(fractal_frame, image=up_image, command=controller.select_previous).pack()
 
 down_lable = Label(image=down_image)
 selection_button_down = Button(fractal_frame, image=down_image, command=controller.select_next).pack()
 
-generation_increase = Button(fractal_frame, text='+', command=controller.increase_depth).pack()
-generation_decrease = Button(fractal_frame, text='-', command=controller.decrease_depth).pack()
+#buttons for changing generation
+generation_increase = Button(fractal_frame, text='+ generation', command=controller.increase_depth).pack()
+generation_decrease = Button(fractal_frame, text='- generation', command=controller.decrease_depth).pack()
 
+#button for choosing canvas color
+color_button = Button(fractal_frame, text="Canvas Background", command=canvas_color)
+color_button.place(x=400, y=600)
+#---------------------------------------------------------------------------------------------------------------------------------
+mainwindow.mainloop()
 
 #goes through the picture frames and puts them as images on the buttons
 # frame_folder = "picture_frames"
@@ -104,25 +109,3 @@ generation_decrease = Button(fractal_frame, text='-', command=controller.decreas
 #         t+=200
 #     else:
 #         continue
-
-mainwindow.mainloop()
-
-# def color_the_canvas(color):
-#     r = ("0"+hex(int(scale_red.get()))[2:])[-2:]
-#     g = ("0"+hex(int(scale_green.get()))[2:])[-2:]
-#     b = ("0"+hex(int(scale_blue.get()))[2:])[-2:]
-#     canvas.configure(bg="#"+r+g+b)
-
-#Elements take the space the children need, unless they are empty.
-#When the children are empty width and height can be set.
-# canvas = tk.Canvas(root,bg="#FFFFFF",height=200)
-# canvas.pack(fill = tk.X, padx = 20, pady = 5)
-# scale_red = tk.Scale(root,from_=0,to=255, troughcolor = "#FF0000", orient=tk.HORIZONTAL, command=color_the_canvas)
-# scale_red.set(255)
-# scale_red.pack(fill = tk.X, padx = 20, pady = 5)
-# scale_green = tk.Scale(root,from_=0,to=255, troughcolor = "#00FF00", orient=tk.HORIZONTAL, command=color_the_canvas)
-# scale_green.set(255)
-# scale_green.pack(fill = tk.X, padx = 20, pady = 5)
-# scale_blue = tk.Scale(root,from_=0,to=255, troughcolor = "#0000FF", orient=tk.HORIZONTAL, command=color_the_canvas)
-# scale_blue.set(255)
-# scale_blue.pack(fill = tk.X, padx = 20, pady = 5)
