@@ -26,3 +26,4 @@ class Sierpinski(FractalTemplate):
         self.canvas.create_line(x1, y1, x2, y2, fill=self.color)
         self.canvas.create_line(x1, y1, x3, y3, fill=self.color)
         self.canvas.create_line(x2, y2, x3, y3, fill=self.color)
+    

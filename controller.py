@@ -1,9 +1,10 @@
 from sierpinski import *
 from koch import *
+from json import dumps as dump
 import tkinter
 
 class Controller: 
-    def __init__(self, canvas, frame, fractals, max_fractals, max_depth=6):
+    def __init__(self, canvas, frame, fractals, max_fractals = 5, max_depth=6):
         self.canvas = canvas
         self.frame = frame
         self.fractals = fractals
@@ -62,11 +63,20 @@ class Controller:
             new_koch.create_menu_item(self.menu_container)
 
     def draw_fractals(self):
-        self.canvas.delete('all')
-        for fractal in self.fractals:
+        self.canvas.delete('all') #clears canvas for re-draw
+        for fractal in self.fractals:# goes through list of all created fractals and chechs which one it is 
             if fractal.name == 'sierpinski triangle':
-                 fractal.start_sierpinski()
+                 fractal.start_sierpinski() #draws sierpinski
             if fractal.name == 'koch snowflake':
-                fractal.start_koch()
+                fractal.start_koch() #draws koch
+    
+    def save_canvas(self):
+        saved_data = []
+        for fractal in self.fractals:
+            saved_data.append(fractal.get_save_data())    
+        json_controller = dump(saved_data)
+        with open('save_states/save_file.json', 'w') as json_file:
+            json_file.write(json_controller)
+    
     
         

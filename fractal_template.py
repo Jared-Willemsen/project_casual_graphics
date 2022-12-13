@@ -38,4 +38,13 @@ class FractalTemplate:
         self.menu_item = Frame(menu_container, height=100, width=250, bg='white', highlightbackground='black', highlightthickness=2)
         self.fill_menu_item()
         self.menu_item.pack()
+
+    def get_save_data(self):
+        saved_data = {}
+        saved_data['name'] = self.name
+        saved_data['position'] = (self.xpos, self.ypos)
+        saved_data['size'] = self.size
+        saved_data['depth'] = self.depth
+        saved_data['color'] = self.color
+        return saved_data
         

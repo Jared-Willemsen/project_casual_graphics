@@ -1,0 +1,22 @@
+[
+    {
+        "name": "sierpinski triangle",
+        "position": [
+            0,
+            400
+        ],
+        "size": 219,
+        "depth": 0,
+        "color": "black"
+    },
+    {
+        "name": "sierpinski triangle",
+        "position": [
+            0,
+            400
+        ],
+        "size": 100,
+        "depth": 0,
+        "color": "black"
+    }
+]
