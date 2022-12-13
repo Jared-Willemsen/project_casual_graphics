@@ -95,9 +95,8 @@ selection_button_up = Button(fractal_frame, image=up_image, command=controller.s
 down_lable = Label(image=down_image)
 selection_button_down = Button(fractal_frame, image=down_image, command=controller.select_next).pack()
 
-increase_size_button = Button(fractal_frame, text="+", command=controller.increase_size).pack()
-decrease_size_button = Button(fractal_frame, text="-", command=controller.decrease_size).pack()
-
+generation_increase = Button(fractal_frame, text='+', command=controller.increase_depth).pack()
+generation_decrease = Button(fractal_frame, text='-', command=controller.decrease_depth).pack()
 
 
 #goes through the picture frames and puts them as images on the buttons

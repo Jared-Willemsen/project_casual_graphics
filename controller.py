@@ -3,13 +3,17 @@ from koch import *
 import tkinter
 
 class Controller: 
-    def __init__(self, canvas, frame, fractals, max_fractals):
+    def __init__(self, canvas, frame, fractals, max_fractals, max_depth=10):
         self.canvas = canvas
         self.frame = frame
         self.fractals = fractals
         self.max_fractals = max_fractals
+        self.max_depth = max_depth
         self.selected_fractal = 0
         
+        self.size_slider = Scale(self.frame, from_=10, to=500, orient=HORIZONTAL, command=self.change_size)
+        self.size_slider.pack()
+
         self.menu_container = Frame(self.frame, height=500, width=250, bg='white', 
         highlightthickness = 10, highlightbackground="#ef2f2f")
         self.menu_container.pack_propagate(False)
@@ -19,23 +23,31 @@ class Controller:
         if self.selected_fractal < (len(self.fractals) - 1):    
             self.selected_fractal += 1
             self.fractals[self.selected_fractal].update_menu_item()
+            self.size_slider.set(self.fractals[self.selected_fractal].size)
     
     def select_previous(self):
         if self.selected_fractal > 0:
             self.selected_fractal -= 1
             self.fractals[self.selected_fractal].update_menu_item()
+            self.size_slider.set(self.fractals[self.selected_fractal].size)
     
-    def increase_size(self):
-        self.fractals[self.selected_fractal].size += 10
+    def increase_depth(self):
+        if self.fractals[self.selected_fractal].depth < self.max_depth:
+            self.fractals[self.selected_fractal].depth += 1
+            self.draw_fractals()
+            self.fractals[self.selected_fractal].update_menu_item()
+
+    def decrease_depth(self):
+        if self.fractals[self.selected_fractal].depth > 0:
+            self.fractals[self.selected_fractal].depth -= 1
+            self.draw_fractals()
+            self.fractals[self.selected_fractal].update_menu_item()
+
+    def change_size(self, val):
+        self.fractals[self.selected_fractal].size = self.size_slider.get()
         self.draw_fractals()
         self.fractals[self.selected_fractal].update_menu_item()
 
-    def decrease_size(self):
-        if self.fractals[self.selected_fractal].size > 10:
-            self.fractals[self.selected_fractal].size -= 10
-            self.draw_fractals()
-            self.fractals[self.selected_fractal].update_menu_item()
-        
     def create_sierpinski_triangle(self):
         if len(self.fractals) < self.max_fractals:
             new_sierpinski = Sierpinski(self.canvas, 0, 400, 100, 0, 'black')
