@@ -3,7 +3,7 @@ from koch import *
 import tkinter
 
 class Controller: 
-    def __init__(self, canvas, frame, fractals, max_fractals, max_depth=10):
+    def __init__(self, canvas, frame, fractals, max_fractals, max_depth=6):
         self.canvas = canvas
         self.frame = frame
         self.fractals = fractals

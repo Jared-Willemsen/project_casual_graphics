@@ -50,11 +50,6 @@ color_button.place(x=500, y=600)
 #frac_color = Button(fractal_frame, text="Fractal Color", command=fractal_color)
 #frac_color.place(x=500, y=550)
 
-#background image for frame
-# background_img_frame = PhotoImage(file="museum.png")
-# background_lbl2 = Label(fractal_frame, image=background_img_frame)
-# background_lbl2.pack()
-
 controller = Controller(fractal_canvas, fractal_frame, [], 5)
 controller.draw_fractals()
 
@@ -64,18 +59,12 @@ koch.start_koch()
 box = Box(fractal_canvas, 0, 200, 5, "blue")
 box.draw_box(0, 200, 500, 400)
 
-#UI interaction underneath canvas
-num_gen = Entry(fractal_frame, width=10)
-gen_label = Label(fractal_frame, text="Generation", width=10)
-gen_label.place(x=500,y=500)
-num_gen.place(x=500,y=525)
-
 #Buttons for the fractals and the picture frames
 sierpinski_image = PhotoImage(file='fractal_pictures/sierpinski.png').subsample(4, 4)
 koch_image = PhotoImage(file='fractal_pictures/koch_snowflake.png').subsample(4, 4)
 box_image = PhotoImage(file='fractal_pictures/box_fractal.png').subsample(4, 4)
-up_image = PhotoImage(file='button_pictures/up_arrow.png').subsample(2,3)
-down_image = PhotoImage(file='button_pictures/down_arrow.png').subsample(2,3)
+up_image = PhotoImage(file='button_pictures/up_arrow.png').subsample(5,5)
+down_image = PhotoImage(file='button_pictures/down_arrow.png').subsample(5,5)
 
 siepinski_label = Label(image=sierpinski_image)
 sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski_triangle)
@@ -100,21 +89,21 @@ generation_decrease = Button(fractal_frame, text='-', command=controller.decreas
 
 
 #goes through the picture frames and puts them as images on the buttons
-frame_folder = "picture_frames"
-t = 100
-for picture_path in os.listdir(frame_folder):
-    if picture_path != ".DS_Store":
+# frame_folder = "picture_frames"
+# t = 100
+# for picture_path in os.listdir(frame_folder):
+#     if picture_path != ".DS_Store":
 
-        img = PhotoImage(file=f"picture_frames/{picture_path}").subsample(4, 4)
+#         img = PhotoImage(file=f"picture_frames/{picture_path}").subsample(4, 4)
 
-        #keeps a reference of the label image so that it can be displayed
-        label = Label(image=img)
-        label.image = img
-        fractal_button = Button(fractal_frame, image=img)
-        fractal_button.place(x=30, y=t)
-        t+=200
-    else:
-        continue
+#         #keeps a reference of the label image so that it can be displayed
+#         label = Label(image=img)
+#         label.image = img
+#         fractal_button = Button(fractal_frame, image=img)
+#         fractal_button.place(x=30, y=t)
+#         t+=200
+#     else:
+#         continue
 
 mainwindow.mainloop()
 

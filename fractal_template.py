@@ -11,11 +11,11 @@ class FractalTemplate:
         self.color = color
         self.menu_item = Frame()
     
-    def clear_menu_item(self):
+    def clear_menu_item(self): #deletes all lables in its menu-item
         for object in self.menu_item.winfo_children():
             object.destroy()
 
-    def fill_menu_item(self):
+    def fill_menu_item(self): #fills the menu-item with information about the fractal
         Label(self.menu_item, text=self.name, font=('Arial', 20), bg='white').grid(row=0, column=0, columnspan=2)
 
         Label(self.menu_item, text='size', font=('Arial', 10), bg='white').grid(row=1, column=0, sticky=W)
@@ -30,11 +30,11 @@ class FractalTemplate:
         Label(self.menu_item, text='position', font=('Arial', 10), bg='white').grid(row=4, column=0, sticky=W)
         Label(self.menu_item, text=f'({self.xpos}, {self.ypos})', font=('Arial', 10), bg='white').grid(row=4, column=1, sticky=E)
     
-    def update_menu_item(self):
+    def update_menu_item(self): #clears the old menu-item and fills it with new values
         self.clear_menu_item()
         self.fill_menu_item()
     
-    def create_menu_item(self, menu_container):
+    def create_menu_item(self, menu_container): #creates the frame for the menu-item fills it with current values and packs it to the menu
         self.menu_item = Frame(menu_container, height=100, width=250, bg='white', highlightbackground='black', highlightthickness=2)
         self.fill_menu_item()
         self.menu_item.pack()
