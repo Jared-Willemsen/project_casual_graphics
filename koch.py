@@ -15,8 +15,8 @@ class Koch_Snowflake:
         self.color = color
         self.depth = depth
 
-    def draw_line(self, x0, y0, x1, y1):
-        self.canv.create_line(x0, y0, x1, y1, fill=self.color)
+    def draw_line(self, x_0, y_0, x_1, y_1):
+        self.canv.create_line(x_0, y_0, x_1, y_1, fill=self.color)
     
     def distance(self, s_x, s_y, e_x, e_y):
         #calculates distance between the starting and end points
