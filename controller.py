@@ -1,5 +1,6 @@
 from sierpinski import *
 from koch import *
+from box import *
 from json import dumps as dump
 import tkinter
 
@@ -12,12 +13,14 @@ class Controller:
         self.max_depth = max_depth
         self.selected_fractal = 0
         
-        self.size_slider = Scale(self.frame, from_=10, to=500, orient=HORIZONTAL, command=self.change_size)
+        self.size_slider = Scale(self.frame, from_=10, to=500, bg="#a8b8d0", 
+        fg="white", orient=HORIZONTAL, command=self.change_size)
         self.size_slider.pack()
 
-        self.menu_container = Frame(self.frame, height=500, width=250, bg='white', highlightthickness = 10, highlightbackground="#ef2f2f")
+        self.menu_container = Frame(self.frame, height=500, width=250, bg='white', 
+        highlightthickness = 10, highlightbackground="#a8b8d0")
         self.menu_container.pack_propagate(False)
-        self.menu_container.place(x=900, y=100)
+        self.menu_container.place(x=935, y=100)
 
     def select_next(self):
         if self.selected_fractal < (len(self.fractals) - 1):    
@@ -50,17 +53,18 @@ class Controller:
 
     def create_sierpinski_triangle(self):
         if len(self.fractals) < self.max_fractals:
-            new_sierpinski = Sierpinski(self.canvas, 0, 400, 100, 0, 'black')
+            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, 'black')
             self.fractals.append(new_sierpinski)
             self.draw_fractals()
             new_sierpinski.create_menu_item(self.menu_container)
     
     def create_koch_snowflake(self):
         if len(self.fractals) < self.max_fractals:
-            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 5, "blue")
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "black")
             self.fractals.append(new_koch)
             self.draw_fractals()
             new_koch.create_menu_item(self.menu_container)
+
 
     def draw_fractals(self):
         self.canvas.delete('all') #clears canvas for re-draw
