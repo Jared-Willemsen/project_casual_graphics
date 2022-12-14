@@ -1,6 +1,5 @@
 from math import sqrt  
 from tkinter import * 
-
 from fractal_template import *
 
 class Sierpinski(FractalTemplate):

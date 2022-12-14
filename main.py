@@ -52,8 +52,8 @@ controller.draw_fractals()
 # koch = Koch_Snowflake(fractal_canvas, 0, 200, 5, 5, "blue")
 # koch.start_koch()
 
-# box = Box(fractal_canvas, 0, 200, 5, "blue")
-# box.draw_box(0, 200, 500, 400)
+# box = Box(fractal_canvas, 50, 200, 5, 0, "white")
+# box.start_box()
 
 #UI ELEMENTS------------------------------------------------------------------------------------------------------------------
 #button pictures
@@ -73,7 +73,7 @@ koch_button = Button(fractal_frame, image=koch_image, command=controller.create_
 koch_button.place(x=100, y=300)
 
 box_label = Label(image=box_image)
-box_button = Button(fractal_frame, image=box_image)
+box_button = Button(fractal_frame, image=box_image, command=controller.create_box)
 box_button.place(x=100, y=500)
 
 #buttons for changing selection

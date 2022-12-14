@@ -65,6 +65,12 @@ class Controller:
             self.draw_fractals()
             new_koch.create_menu_item(self.menu_container)
 
+    def create_box(self):
+        if len(self.fractals) < self.max_fractals:
+            new_box = Box(self.canvas, 150, 150, 5, 0, "white")
+            self.fractals.append(new_box)
+            self.draw_fractals()
+            new_box.create_menu_item(self.menu_container)
 
     def draw_fractals(self):
         self.canvas.delete('all') #clears canvas for re-draw
@@ -73,6 +79,8 @@ class Controller:
                  fractal.start_sierpinski() #draws sierpinski
             if fractal.name == 'koch snowflake':
                 fractal.start_koch() #draws koch
+            if fractal.name == 'box':
+                fractal.start_box() #draws vicsek/box fractal
     
     def save_canvas(self):
         saved_data = []
