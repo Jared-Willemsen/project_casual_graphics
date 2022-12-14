@@ -13,14 +13,14 @@ class Controller:
         self.max_depth = max_depth
         self.selected_fractal = 0
         
-        self.size_slider = Scale(self.frame, from_=10, to=500, bg="#a8b8d0", 
+        self.size_slider = Scale(self.frame, from_=10, to=500, bg="#333333", 
         fg="white", orient=HORIZONTAL, command=self.change_size)
         self.size_slider.pack()
 
         self.menu_container = Frame(self.frame, height=500, width=250, bg='white', 
         highlightthickness = 10, highlightbackground="#a8b8d0")
         self.menu_container.pack_propagate(False)
-        self.menu_container.place(x=935, y=100)
+        self.menu_container.place(x=955, y=100)
 
     def select_next(self):
         if self.selected_fractal < (len(self.fractals) - 1):    

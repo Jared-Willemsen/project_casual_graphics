@@ -91,7 +91,7 @@ generation_decrease = Button(fractal_frame, text='Generation -', highlightbackgr
 color_button = Button(fractal_frame, text="Canvas Background", highlightbackground="#333333", command=canvas_color)
 color_button.place(x=375, y=600)
 
-save_button = Button(fractal_frame, text='Save', highlightbackground="#333333", command=controller.save_canvas).pack()
+save_button = Button(fractal_frame, text='Save', highlightbackground="#333333", command=controller.save_canvas).place(x=800, y=500)
 #---------------------------------------------------------------------------------------------------------------------------------
 mainwindow.mainloop()
 
