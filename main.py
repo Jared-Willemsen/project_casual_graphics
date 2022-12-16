@@ -1,3 +1,10 @@
+# TODO Improvements: Colors of the fractal, 
+# highlighting selected fractal in controller view (up and down buttons), 
+# UI labels for clarity about use
+# Wow factor is the brain
+# Save canvas picture as jpg
+# Save canvas animation as gyf
+
 #ttk is a submodule allowing for newer widgets in Tk version 8.5
 from tkinter import *
 from tkinter import ttk
@@ -21,20 +28,20 @@ background_lbl1 = Label(mainwindow, image=background_img_canv)
 background_lbl1.pack()
 
 #frame that will include all the widgets/UI
-fractal_frame = Frame(mainwindow, highlightbackground="#a8b8d0", 
-                    highlightthickness=10, height=1000, width=1000, bg="#333333")
+fractal_frame = Frame(mainwindow, highlightbackground="#FFD700", 
+                    highlightthickness=10, height=1000, width=1000, bg="#2E2252")
 fractal_frame.place(relwidth=0.90,relheight=0.90, rely=0.05, relx=0.05)
 frac_label = Label(fractal_frame, text="FRACTAL MUSEUM", 
-            font=("Verdana italic",60), bg="#333333", fg="#a8b8d0")
+            font=("Verdana italic",60), bg="#2E2252", fg="white")
 frac_label.pack()
 
 #canvas that will be inside the frame for the created image
-fractal_canvas = Canvas(fractal_frame, bg="white", highlightbackground="#a8b8d0", highlightthickness="10", height=400, width=500)
+fractal_canvas = Canvas(fractal_frame, bg="white", highlightbackground="#FFD700", highlightthickness="10", height=400, width=500)
 fractal_canvas.pack()
 
 #color picker function
 def canvas_color():
-    color = tkinter.colorchooser.askcolor(title="Tkinter color chooser")
+    color = colorchooser.askcolor(title="Tkinter color chooser")
     fractal_canvas.configure(bg=color[1])
 
 #fractal color picker
@@ -78,20 +85,20 @@ box_button.place(x=100, y=500)
 
 #buttons for changing selection
 up_label = Label(image=up_image)
-selection_button_up = Button(fractal_frame, image=up_image, highlightbackground="#333333", command=controller.select_previous).pack()
+selection_button_up = Button(fractal_frame, image=up_image, highlightbackground="#2E2252", command=controller.select_previous).pack()
 
 down_lable = Label(image=down_image)
-selection_button_down = Button(fractal_frame, image=down_image, highlightbackground="#333333", command=controller.select_next).pack()
+selection_button_down = Button(fractal_frame, image=down_image, highlightbackground="#2E2252", command=controller.select_next).pack()
 
 #buttons for changing generation
-generation_increase = Button(fractal_frame, text='Generation +', highlightbackground="#333333", command=controller.increase_depth).place(x=375, y=500)
-generation_decrease = Button(fractal_frame, text='Generation -', highlightbackground="#333333", command=controller.decrease_depth).place(x=375, y=550)
+generation_increase = Button(fractal_frame, text='Generation +', highlightbackground="#2E2252", command=controller.increase_depth).place(x=375, y=500)
+generation_decrease = Button(fractal_frame, text='Generation -', highlightbackground="#2E2252", command=controller.decrease_depth).place(x=375, y=550)
 
 #button for choosing canvas color
-color_button = Button(fractal_frame, text="Canvas Background", highlightbackground="#333333", command=canvas_color)
+color_button = Button(fractal_frame, text="Canvas Background", highlightbackground="#2E2252", command=canvas_color)
 color_button.place(x=375, y=600)
 
-save_button = Button(fractal_frame, text='Save', highlightbackground="#333333", command=controller.save_canvas).place(x=800, y=500)
+save_button = Button(fractal_frame, text='Save', highlightbackground="#2E2252", command=controller.save_canvas).place(x=800, y=500)
 #---------------------------------------------------------------------------------------------------------------------------------
 mainwindow.mainloop()
 

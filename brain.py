@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.ttk import *
 import math
 import random
+
 # Create the main window
 root = Tk()
 
@@ -9,7 +10,7 @@ root = Tk()
 canvas = Canvas(root, width=800, height=600)
 canvas.pack()
 
-class RecursiveTree:
+class Brain:
     def __init__(self, canvas, trunk_length=100, branch_angle=30):
         self.canvas = canvas
         self.trunk_length = trunk_length
@@ -72,15 +73,15 @@ class RecursiveTree:
             self.draw(x7, y7, depth-1)
             self.draw(x3, y3, depth-1)
 
-# Create a RecursiveTree instance
-rt = RecursiveTree(canvas)
+# Create a brain instance
+brain = Brain(canvas)
 
 # Set the trunk length and branching angle
-rt.trunk_length = 70
-rt.branch_angle = 30
+brain.trunk_length = 70
+brain.branch_angle = 30
 
 # Draw the fractal at the given position and depth
-rt.draw(100, 300, 3)
+brain.draw(100, 300, 4)
 
 # Run the main loop
 root.mainloop()
