@@ -96,11 +96,11 @@ class Controller:
     def draw_fractals(self):
         self.canvas.delete('all') #clears canvas for re-draw
         for fractal in self.fractals:# goes through list of all created fractals and chechs which one it is 
-            if fractal.name == 'sierpinski triangle':
+            if fractal.name == 'Sierpinski':
                  fractal.start_sierpinski() #draws sierpinski
-            if fractal.name == 'koch snowflake':
+            if fractal.name == 'Koch':
                 fractal.start_koch() #draws koch
-            if fractal.name == 'box':
+            if fractal.name == 'Vicsek':
                 fractal.start_box() #draws vicsek/box fractal
     
     #saves fractal list

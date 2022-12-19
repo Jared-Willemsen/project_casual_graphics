@@ -9,7 +9,7 @@ from fractal_template import *
 # https://craftofcoding.wordpress.com/2019/11/26/recursive-patterns-the-koch-curve-ii/
 
 class Koch_Snowflake(FractalTemplate):
-    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, name='koch snowflake'):
+    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, name='Koch'):
         super().__init__(name, canvas, xpos, ypos, size, depth, color, is_selected)
 
     def draw_line(self, x_0, y_0, x_1, y_1):
