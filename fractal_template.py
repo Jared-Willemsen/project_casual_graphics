@@ -44,7 +44,7 @@ class FractalTemplate:
         self.fill_menu_item()
     
     def create_menu_item(self, menu_container): #creates the frame for the menu-item fills it with current values and packs it to the menu
-        self.menu_item = Frame(menu_container, height=100, width=250, bg='white', highlightbackground='black', highlightthickness=2)
+        self.menu_item = Frame(menu_container, height=100, width=250, bg='white', highlightbackground='black', highlightthickness=6)
         if self.is_selected:
             self.menu_item.config(highlightbackground='green')
         self.fill_menu_item()
