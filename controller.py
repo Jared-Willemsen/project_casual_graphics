@@ -2,7 +2,7 @@ from sierpinski import *
 from koch import *
 from box import *
 from json import dumps as dump
-import tkinter
+from tkinter import *
 
 class Controller: 
     def __init__(self, canvas, frame, fractals, max_fractals = 5, max_depth=5):
@@ -13,12 +13,12 @@ class Controller:
         self.max_depth = max_depth
         self.selected_fractal = 0
         
-        self.size_slider = Scale(self.frame, from_=10, to=500, bg="#333333", 
+        self.size_slider = Scale(self.frame, from_=10, to=500, length=250, bg="#2E2252", 
         fg="white", orient=HORIZONTAL, command=self.change_size)
         self.size_slider.pack()
 
         self.menu_container = Frame(self.frame, height=500, width=250, bg='white', 
-        highlightthickness = 10, highlightbackground="#a8b8d0")
+        highlightthickness = 10, highlightbackground="#FFD700")
         self.menu_container.pack_propagate(False)
         self.menu_container.place(x=955, y=100)
 
