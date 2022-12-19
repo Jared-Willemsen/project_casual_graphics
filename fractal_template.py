@@ -33,11 +33,9 @@ class FractalTemplate:
     
     def update_selected_menu_item(self):
         if not self.is_selected:
-            print(1)
             self.is_selected = True
             self.menu_item.config(highlightbackground='green')
         else:
-            print(2)
             self.is_selected = False
             self.menu_item.config(highlightbackground='black')
 
