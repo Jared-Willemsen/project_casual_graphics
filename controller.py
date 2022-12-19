@@ -5,7 +5,7 @@ from json import dumps as dump
 import tkinter
 
 class Controller: 
-    def __init__(self, canvas, frame, fractals, max_fractals = 5, max_depth=6):
+    def __init__(self, canvas, frame, fractals, max_fractals = 5, max_depth=5):
         self.canvas = canvas
         self.frame = frame
         self.fractals = fractals
@@ -22,18 +22,24 @@ class Controller:
         self.menu_container.pack_propagate(False)
         self.menu_container.place(x=955, y=100)
 
+    #fractal selection methods
     def select_next(self):
         if self.selected_fractal < (len(self.fractals) - 1):    
+            self.fractals[self.selected_fractal].update_selected_menu_item()
             self.selected_fractal += 1
             self.fractals[self.selected_fractal].update_menu_item()
+            self.fractals[self.selected_fractal].update_selected_menu_item()
             self.size_slider.set(self.fractals[self.selected_fractal].size)
     
     def select_previous(self):
         if self.selected_fractal > 0:
+            self.fractals[self.selected_fractal].update_selected_menu_item()
             self.selected_fractal -= 1
             self.fractals[self.selected_fractal].update_menu_item()
+            self.fractals[self.selected_fractal].update_selected_menu_item()
             self.size_slider.set(self.fractals[self.selected_fractal].size)
-    
+
+    #fractal edit methods
     def increase_depth(self):
         if self.fractals[self.selected_fractal].depth < self.max_depth:
             self.fractals[self.selected_fractal].depth += 1
@@ -51,27 +57,42 @@ class Controller:
         self.draw_fractals()
         self.fractals[self.selected_fractal].update_menu_item()
 
+    #Fractal creation methods
     def create_sierpinski_triangle(self):
-        if len(self.fractals) < self.max_fractals:
-            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, 'black')
-            self.fractals.append(new_sierpinski)
-            self.draw_fractals()
-            new_sierpinski.create_menu_item(self.menu_container)
-    
+        if not len(self.fractals) < self.max_fractals:
+            return
+        if len(self.fractals) == 0:
+            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, 'black', True)
+        else:
+            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, 'black', False)
+        self.fractals.append(new_sierpinski)
+        self.draw_fractals()
+        new_sierpinski.create_menu_item(self.menu_container)
+
     def create_koch_snowflake(self):
-        if len(self.fractals) < self.max_fractals:
-            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "black")
-            self.fractals.append(new_koch)
-            self.draw_fractals()
-            new_koch.create_menu_item(self.menu_container)
+        if not len(self.fractals) < self.max_fractals:
+            return
+        if len(self.fractals) == 0:
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "black", True)
+        else:
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "black", False)
+        self.fractals.append(new_koch)
+        self.draw_fractals()
+        new_koch.create_menu_item(self.menu_container)
 
     def create_box(self):
-        if len(self.fractals) < self.max_fractals:
-            new_box = Box(self.canvas, 150, 150, 5, 0, "white")
-            self.fractals.append(new_box)
-            self.draw_fractals()
-            new_box.create_menu_item(self.menu_container)
+        if not len(self.fractals) < self.max_fractals:
+            return
 
+        if len(self.fractals) == 0:
+            new_box = Box(self.canvas, 150, 150, 100, 0, "black", True)
+        else:
+            new_box = Box(self.canvas, 150, 150, 100, 0, "black", False)
+        self.fractals.append(new_box)
+        self.draw_fractals()
+        new_box.create_menu_item(self.menu_container)
+
+    #draws all fractals to the canvas
     def draw_fractals(self):
         self.canvas.delete('all') #clears canvas for re-draw
         for fractal in self.fractals:# goes through list of all created fractals and chechs which one it is 
@@ -82,6 +103,7 @@ class Controller:
             if fractal.name == 'box':
                 fractal.start_box() #draws vicsek/box fractal
     
+    #saves fractal list
     def save_canvas(self):
         saved_data = []
         for fractal in self.fractals:

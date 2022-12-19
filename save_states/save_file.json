@@ -2,21 +2,31 @@
     {
         "name": "sierpinski triangle",
         "position": [
-            0,
+            150,
             400
         ],
-        "size": 219,
-        "depth": 0,
+        "size": 111,
+        "depth": 2,
         "color": "black"
     },
     {
-        "name": "sierpinski triangle",
+        "name": "koch snowflake",
         "position": [
             0,
-            400
+            200
         ],
-        "size": 100,
-        "depth": 0,
+        "size": 10,
+        "depth": 4,
+        "color": "black"
+    },
+    {
+        "name": "box",
+        "position": [
+            150,
+            150
+        ],
+        "size": 32,
+        "depth": 1,
         "color": "black"
     }
 ]

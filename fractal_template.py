@@ -1,7 +1,7 @@
 from tkinter import *
 
 class FractalTemplate:
-    def __init__(self, name, canvas, xpos, ypos, size, depth, color):
+    def __init__(self, name, canvas, xpos, ypos, size, depth, color, is_selected):
         self.name = name
         self.canvas = canvas
         self.xpos = xpos
@@ -9,6 +9,7 @@ class FractalTemplate:
         self.size = size
         self.depth = depth
         self.color = color
+        self.is_selected = is_selected
         self.menu_item = Frame()
     
     def clear_menu_item(self): #deletes all lables in its menu-item
@@ -30,12 +31,24 @@ class FractalTemplate:
         Label(self.menu_item, text='position', font=('Arial', 10), bg='white').grid(row=4, column=0, sticky=W)
         Label(self.menu_item, text=f'({self.xpos}, {self.ypos})', font=('Arial', 10), bg='white').grid(row=4, column=1, sticky=E)
     
+    def update_selected_menu_item(self):
+        if not self.is_selected:
+            print(1)
+            self.is_selected = True
+            self.menu_item.config(highlightbackground='green')
+        else:
+            print(2)
+            self.is_selected = False
+            self.menu_item.config(highlightbackground='black')
+
     def update_menu_item(self): #clears the old menu-item and fills it with new values
         self.clear_menu_item()
         self.fill_menu_item()
     
     def create_menu_item(self, menu_container): #creates the frame for the menu-item fills it with current values and packs it to the menu
         self.menu_item = Frame(menu_container, height=100, width=250, bg='white', highlightbackground='black', highlightthickness=2)
+        if self.is_selected:
+            self.menu_item.config(highlightbackground='green')
         self.fill_menu_item()
         self.menu_item.pack()
 

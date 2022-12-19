@@ -3,34 +3,28 @@ from fractal_template import *
 
 class Box(FractalTemplate):
 
-    def __init__(self, canvas, xpos, ypos, size, depth, color, name="box"):
-        super().__init__(name, canvas, xpos, ypos, size, depth, color)
+    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, name="box"):
+        super().__init__(name, canvas, xpos, ypos, size, depth, color, is_selected)
 
     def start_box(self):
-        self.draw_box(self.xpos, self.ypos, 350, 350, self.depth)
+        self.draw_box(self.xpos, self.ypos, self.depth, self.size)
 
-    def draw_box(self, x_1,y_1,x_2,y_2,depth):
+    def draw_box(self, x_1, y_1, depth, size):
         #base case
         if depth==0:
-            self.draw_rect(x_1, y_1, x_2, y_2)
+            self.draw_rect(x_1 + size, y_1, x_1 + 2*size, y_1 + size) # right rectangle
+            self.draw_rect(x_1, y_1 + size, x_1 + size, y_1 + 2*size) # buttom rectangle
+            self.draw_rect(x_1 - size, y_1, x_1 + size, y_1 + size) # left rectangle
+            self.draw_rect(x_1, y_1 - size, x_1 + size, y_1 + size) # top rectangle
+            self.draw_rect(x_1, y_1, x_1 + size, y_1 + size) # center rectangle
             return
         #recursive case finds the coordinates of the intermediate points (one third and two thirds of the line)
         else:
-            l_x1=x_1 + (x_2-x_1)/3
-            l_x2=x_1 + 2 * (x_2-x_1)/3
-            l_y1=y_1 + (y_2-y_1)/3
-            l_y2=y_1 + 2 * (y_2-y_1)/3
-
-            self.draw_rect(x_1,y_1,l_x1,l_y1)
-            self.draw_rect(l_x2,y_1,x_2,l_y1)
-            self.draw_rect(x_1,l_y2,l_x1,y_2)
-            self.draw_rect(l_x2,l_y2,x_2,y_2)
-
-            self.draw_box(l_x1,y_1,l_x2,l_y1,depth-1)
-            self.draw_box(x_1,l_y1,l_x1,l_y2,depth-1)
-            self.draw_box(l_x1,l_y1,l_x2,l_y2,depth-1)
-            self.draw_box(l_x2,l_y1,x_2,l_y2,depth-1)
-            self.draw_box(l_x1,l_y2,l_x2,y_2,depth-1)
+            self.draw_box(x_1, y_1, depth-1, size/3)
+            self.draw_box(x_1 + size, y_1, depth-1, size/3)
+            self.draw_box(x_1, y_1 + size, depth-1, size/3)
+            self.draw_box(x_1 - size, y_1, depth-1, size/3)
+            self.draw_box(x_1, y_1 - size, depth-1, size/3)
 
     def draw_rect(self, x0, y0, x_1, y_1):
         self.canvas.create_rectangle(x0, y0, x_1, y_1, fill=self.color, outline="black")
