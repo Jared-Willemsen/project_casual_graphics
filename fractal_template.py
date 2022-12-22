@@ -58,4 +58,6 @@ class FractalTemplate:
         saved_data['depth'] = self.depth
         saved_data['color'] = self.color
         return saved_data
+    
+
         

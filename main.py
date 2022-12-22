@@ -53,8 +53,7 @@ def canvas_color():
 #frac_color = Button(fractal_frame, text="Fractal Color", command=fractal_color)
 #frac_color.place(x=500, y=550)
 
-controller = Controller(fractal_canvas, fractal_frame, [], 5)
-controller.draw_fractals()
+controller = Controller(fractal_canvas, fractal_frame, [])  
 
 # koch = Koch_Snowflake(fractal_canvas, 0, 200, 5, 5, "blue")
 # koch.start_koch()
@@ -98,7 +97,10 @@ generation_decrease = Button(fractal_frame, text='Generation -', highlightbackgr
 color_button = Button(fractal_frame, text="Canvas Background", highlightbackground="#2E2252", command=canvas_color)
 color_button.place(x=375, y=600)
 
+fractal_color_button = Button(fractal_frame, text='line color', highlightbackground="#2E2252", command=controller.change_color).place(x=375, y=650)
+
 save_button = Button(fractal_frame, text='Save', highlightbackground="#2E2252", command=controller.save_canvas).place(x=800, y=500)
+loaf_button = Button(fractal_frame, text='Load', highlightbackground='#2E2252', command=controller.load_canvas).place(x=800, y=550)
 #---------------------------------------------------------------------------------------------------------------------------------
 mainwindow.mainloop()
 

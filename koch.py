@@ -9,21 +9,24 @@ from fractal_template import *
 # https://craftofcoding.wordpress.com/2019/11/26/recursive-patterns-the-koch-curve-ii/
 
 class Koch_Snowflake(FractalTemplate):
-    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, name='koch snowflake'):
+    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, lines, name='koch snowflake'):
         super().__init__(name, canvas, xpos, ypos, size, depth, color, is_selected)
+        self.lines = lines
 
     def draw_line(self, x_0, y_0, x_1, y_1):
-        self.canvas.create_line(x_0, y_0, x_1, y_1, fill=self.color)
-    
+        self.lines.append(self.canvas.create_line(x_0, y_0, x_1, y_1, fill=self.color))
+        
     def distance(self, s_x, s_y, e_x, e_y):
         #calculates distance between the starting and end points
         return sqrt(pow(e_x-s_x, 2) + pow(e_y-s_y, 2))
 
     def start_koch(self):
+        for line in self.lines:
+            self.canvas.delete(line) #clears canvas for re-draw 
+        self.lines.clear()
         self.draw_koch(self.xpos, self.ypos, 500, 200, 0, self.depth)
 
     def draw_koch(self, s_x, s_y, e_x, e_y, ang, depth):
-
         p_x, p_y, q_x, q_y, r_x, r_y = 0, 0, 0, 0, 0, 0
         length = self.distance(s_x, s_y, e_x, e_y)/3
         

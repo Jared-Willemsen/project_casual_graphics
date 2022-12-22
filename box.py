@@ -3,10 +3,14 @@ from fractal_template import *
 
 class Box(FractalTemplate):
 
-    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, name="box"):
+    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, lines, name="box"):
         super().__init__(name, canvas, xpos, ypos, size, depth, color, is_selected)
+        self.lines = lines
 
     def start_box(self):
+        for line in self.lines:
+            self.canvas.delete(line) #clears canvas for re-draw 
+        self.lines.clear()
         self.draw_box(self.xpos, self.ypos, self.depth, self.size)
 
     def draw_box(self, x_1, y_1, depth, size):
@@ -17,7 +21,6 @@ class Box(FractalTemplate):
             self.draw_rect(x_1 - size, y_1, x_1 + size, y_1 + size) # left rectangle
             self.draw_rect(x_1, y_1 - size, x_1 + size, y_1 + size) # top rectangle
             self.draw_rect(x_1, y_1, x_1 + size, y_1 + size) # center rectangle
-            return
         #recursive case finds the coordinates of the intermediate points (one third and two thirds of the line)
         else:
             self.draw_box(x_1, y_1, depth-1, size/3)
@@ -27,7 +30,7 @@ class Box(FractalTemplate):
             self.draw_box(x_1, y_1 - size, depth-1, size/3)
 
     def draw_rect(self, x0, y0, x_1, y_1):
-        self.canvas.create_rectangle(x0, y0, x_1, y_1, fill=self.color, outline="black")
+        self.lines.append(self.canvas.create_rectangle(x0, y0, x_1, y_1, fill=self.color, outline="black"))
     
 
     # def draw_fractal(self, x, y, width, height):

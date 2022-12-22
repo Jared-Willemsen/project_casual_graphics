@@ -2,25 +2,50 @@ from sierpinski import *
 from koch import *
 from box import *
 from json import dumps as dump
+from json import load 
 from tkinter import *
+from tkinter import colorchooser
 
 class Controller: 
-    def __init__(self, canvas, frame, fractals, max_fractals = 5, max_depth=5):
+    def __init__(self, canvas, frame, fractals, max_depth=5):
         self.canvas = canvas
         self.frame = frame
         self.fractals = fractals
-        self.max_fractals = max_fractals
         self.max_depth = max_depth
         self.selected_fractal = 0
+
+        menu_frame = Frame(self.frame, bg='white', highlightthickness = 10, highlightbackground="#FFD700")
+        menu_canvas = Canvas(menu_frame, bg="white", height=500, width=220)
+        menu_scrollbar = Scrollbar(menu_frame, orient="vertical", command=menu_canvas.yview) 
+        self.menu_container = Frame(menu_canvas)
+        #self.menu_container.pack_propagate(0)
         
+        self.menu_container.bind("<Configure>",lambda e: menu_canvas.configure(scrollregion=menu_canvas.bbox("all")))
+        menu_canvas.create_window((0, 0), window=self.menu_container, anchor="nw")
+        menu_canvas.configure(yscrollcommand = menu_scrollbar.set)
+        
+        # for i in range(50):
+        #     Label(self.menu_container, text="Sample scrolling label").pack()
+
+        menu_frame.place(x=905, y=100)
+        menu_canvas.pack(side="left", fill="both", expand=True)
+        menu_scrollbar.pack(side="left", fill="y")
+        # menu_scrollbar.config(command=self.menu_container.yview)
+
         self.size_slider = Scale(self.frame, from_=10, to=500, length=250, bg="#2E2252", 
         fg="white", orient=HORIZONTAL, command=self.change_size)
         self.size_slider.pack()
 
-        self.menu_container = Frame(self.frame, height=500, width=250, bg='white', 
-        highlightthickness = 10, highlightbackground="#FFD700")
-        self.menu_container.pack_propagate(False)
-        self.menu_container.place(x=955, y=100)
+        self.position_slider_x = Scale(self.frame, from_=0, to=500, length=250, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_x_position)
+        self.position_slider_x.pack()
+
+        self.position_slider_y = Scale(self.frame, from_=0, to=400, length=250, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
+        self.position_slider_y.pack()
+    
+    def set_sliders(self):
+        self.size_slider.set(self.fractals[self.selected_fractal].size)
+        self.position_slider_x.set(self.fractals[self.selected_fractal].xpos)
+        self.position_slider_y.set(self.fractals[self.selected_fractal].ypos)
 
     #fractal selection methods
     def select_next(self):
@@ -29,7 +54,7 @@ class Controller:
             self.selected_fractal += 1
             self.fractals[self.selected_fractal].update_menu_item()
             self.fractals[self.selected_fractal].update_selected_menu_item()
-            self.size_slider.set(self.fractals[self.selected_fractal].size)
+            self.set_sliders()
     
     def select_previous(self):
         if self.selected_fractal > 0:
@@ -37,72 +62,103 @@ class Controller:
             self.selected_fractal -= 1
             self.fractals[self.selected_fractal].update_menu_item()
             self.fractals[self.selected_fractal].update_selected_menu_item()
-            self.size_slider.set(self.fractals[self.selected_fractal].size)
+            self.set_sliders()
 
     #fractal edit methods
     def increase_depth(self):
         if self.fractals[self.selected_fractal].depth < self.max_depth:
             self.fractals[self.selected_fractal].depth += 1
-            self.draw_fractals()
+            self.draw_fractal(self.fractals[self.selected_fractal])
             self.fractals[self.selected_fractal].update_menu_item()
 
     def decrease_depth(self):
         if self.fractals[self.selected_fractal].depth > 0:
             self.fractals[self.selected_fractal].depth -= 1
-            self.draw_fractals()
+            self.draw_fractal(self.fractals[self.selected_fractal])
             self.fractals[self.selected_fractal].update_menu_item()
 
     def change_size(self, val):
         self.fractals[self.selected_fractal].size = self.size_slider.get()
-        self.draw_fractals()
+        self.draw_fractal(self.fractals[self.selected_fractal])
+        self.fractals[self.selected_fractal].update_menu_item()
+    
+    def change_x_position(self, val):
+        self.fractals[self.selected_fractal].xpos = self.position_slider_x.get()
+        self.draw_fractal(self.fractals[self.selected_fractal])
+        self.fractals[self.selected_fractal].update_menu_item()
+
+    def change_y_position(self, val):
+        self.fractals[self.selected_fractal].ypos = self.position_slider_y.get()
+        self.draw_fractal(self.fractals[self.selected_fractal])
+        self.fractals[self.selected_fractal].update_menu_item()
+    
+    def change_color(self):
+        line_color = colorchooser.askcolor(title="Tkinter color chooser")
+        self.fractals[self.selected_fractal].color = line_color[1]
+        self.draw_fractal(self.fractals[self.selected_fractal])
         self.fractals[self.selected_fractal].update_menu_item()
 
     #Fractal creation methods
     def create_sierpinski_triangle(self):
-        if not len(self.fractals) < self.max_fractals:
-            return
         if len(self.fractals) == 0:
-            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, 'black', True)
+            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, '#000000', True, [])
         else:
-            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, 'black', False)
+            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, '#000000', False, [])
         self.fractals.append(new_sierpinski)
-        self.draw_fractals()
+        self.set_sliders()
+        self.draw_fractal(new_sierpinski)
         new_sierpinski.create_menu_item(self.menu_container)
 
     def create_koch_snowflake(self):
-        if not len(self.fractals) < self.max_fractals:
-            return
         if len(self.fractals) == 0:
-            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "black", True)
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "#000000", True, [])
         else:
-            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "black", False)
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, '#000000', False, [])
         self.fractals.append(new_koch)
-        self.draw_fractals()
+        self.set_sliders()
+        self.draw_fractal(new_koch)
         new_koch.create_menu_item(self.menu_container)
 
     def create_box(self):
-        if not len(self.fractals) < self.max_fractals:
-            return
-
         if len(self.fractals) == 0:
-            new_box = Box(self.canvas, 150, 150, 100, 0, "black", True)
+            new_box = Box(self.canvas, 150, 150, 100, 0, "#000000", True, [])
         else:
-            new_box = Box(self.canvas, 150, 150, 100, 0, "black", False)
+            new_box = Box(self.canvas, 150, 150, 100, 0, "#000000", False, [])
         self.fractals.append(new_box)
-        self.draw_fractals()
+        self.set_sliders()
+        self.draw_fractal(new_box)
         new_box.create_menu_item(self.menu_container)
 
     #draws all fractals to the canvas
-    def draw_fractals(self):
-        self.canvas.delete('all') #clears canvas for re-draw
-        for fractal in self.fractals:# goes through list of all created fractals and chechs which one it is 
-            if fractal.name == 'sierpinski triangle':
-                 fractal.start_sierpinski() #draws sierpinski
-            if fractal.name == 'koch snowflake':
-                fractal.start_koch() #draws koch
-            if fractal.name == 'box':
-                fractal.start_box() #draws vicsek/box fractal
-    
+    def draw_fractal(self, fractal):
+        if fractal.name == 'sierpinski triangle':
+            fractal.start_sierpinski() #draws sierpinski
+        if fractal.name == 'koch snowflake':
+            fractal.start_koch() #draws koch
+        if fractal.name == 'box':
+            fractal.start_box() #draws vicsek/box fractal
+
+    def load_fractal(self, fractal):
+        if fractal['name'] == 'sierpinski triangle':
+            loaded_fractal = Sierpinski(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
+        elif fractal['name'] == 'koch snowflake':
+            loaded_fractal = Koch_Snowflake(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
+        elif fractal['name'] == 'box':
+            loaded_fractal = Box(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
+        if len(self.fractals) == 0:
+            loaded_fractal.is_selected = True
+        self.fractals.append(loaded_fractal)
+        self.set_sliders()
+        self.draw_fractal(loaded_fractal)
+        loaded_fractal.create_menu_item(self.menu_container)
+
+    def clear_controller(self):
+        self.fractals.clear()
+        self.selected_fractal = 0
+        self.canvas.delete('all')
+        for item in self.menu_container.winfo_children():
+            item.destroy()
+
     #saves fractal list
     def save_canvas(self):
         saved_data = []
@@ -112,5 +168,9 @@ class Controller:
         with open('save_states/save_file.json', 'w') as json_file:
             json_file.write(json_controller)
     
-    
-        
+    def load_canvas(self):
+        self.clear_controller()
+        with open('save_states/save_file.json', 'r') as json_file:
+            loaded_data = load(json_file)
+        for fractal in loaded_data:
+            self.load_fractal(fractal)
