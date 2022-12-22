@@ -16,6 +16,7 @@ class Koch_Snowflake(FractalTemplate):
     def draw_line(self, x_0, y_0, x_1, y_1):
         self.lines.append(self.canvas.create_line(x_0, y_0, x_1, y_1, fill=self.color))
         
+    
     def distance(self, s_x, s_y, e_x, e_y):
         #calculates distance between the starting and end points
         return sqrt(pow(e_x-s_x, 2) + pow(e_y-s_y, 2))

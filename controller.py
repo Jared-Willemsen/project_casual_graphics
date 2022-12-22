@@ -139,9 +139,9 @@ class Controller:
             fractal.start_box() #draws vicsek/box fractal
 
     def load_fractal(self, fractal):
-        if fractal['name'] == 'sierpinski triangle':
+        if fractal['name'] == 'sierpinski':
             loaded_fractal = Sierpinski(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
-        elif fractal['name'] == 'koch snowflake':
+        elif fractal['name'] == 'koch':
             loaded_fractal = Koch_Snowflake(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
         elif fractal['name'] == 'box':
             loaded_fractal = Box(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 

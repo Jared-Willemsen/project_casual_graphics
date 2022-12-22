@@ -3,7 +3,7 @@ from fractal_template import *
 
 class Box(FractalTemplate):
 
-    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, lines, name="box"):
+    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, lines, name="Vicsek"):
         super().__init__(name, canvas, xpos, ypos, size, depth, color, is_selected)
         self.lines = lines
 

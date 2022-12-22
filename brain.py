@@ -81,7 +81,7 @@ brain.trunk_length = 70
 brain.branch_angle = 30
 
 # Draw the fractal at the given position and depth
-brain.draw(100, 300, 4)
+brain.draw(100, 300, 3)
 
 # Run the main loop
 root.mainloop()
