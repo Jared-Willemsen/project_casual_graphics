@@ -131,19 +131,19 @@ class Controller:
 
     #draws all fractals to the canvas
     def draw_fractal(self, fractal):
-        if fractal.name == 'sierpinski triangle':
+        if fractal.name == 'Sierpinski':
             fractal.start_sierpinski() #draws sierpinski
-        if fractal.name == 'koch snowflake':
+        if fractal.name == 'Koch':
             fractal.start_koch() #draws koch
-        if fractal.name == 'box':
+        if fractal.name == 'Vicsek':
             fractal.start_box() #draws vicsek/box fractal
 
     def load_fractal(self, fractal):
-        if fractal['name'] == 'sierpinski':
+        if fractal['name'] == 'Sierpinski':
             loaded_fractal = Sierpinski(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
-        elif fractal['name'] == 'koch':
+        elif fractal['name'] == 'Koch':
             loaded_fractal = Koch_Snowflake(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
-        elif fractal['name'] == 'box':
+        elif fractal['name'] == 'Vicsek':
             loaded_fractal = Box(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
         if len(self.fractals) == 0:
             loaded_fractal.is_selected = True
