@@ -27,20 +27,20 @@ class Controller:
         # for i in range(50):
         #     Label(self.menu_container, text="Sample scrolling label").pack()
 
-        menu_frame.place(x=905, y=100)
+        menu_frame.place(x=952, y=100)
         menu_canvas.pack(side="left", fill="both", expand=True)
         menu_scrollbar.pack(side="left", fill="y")
         # menu_scrollbar.config(command=self.menu_container.yview)
 
-        self.size_slider = Scale(self.frame, from_=10, to=500, length=250, bg="#2E2252", 
+        self.size_slider = Scale(self.frame, label="Size", from_=10, to=500, length=200, bg="#2E2252", 
         fg="white", orient=HORIZONTAL, command=self.change_size)
-        self.size_slider.pack()
+        self.size_slider.place(x=550, y=600)
 
-        self.position_slider_x = Scale(self.frame, from_=0, to=500, length=250, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_x_position)
-        self.position_slider_x.pack()
+        self.position_slider_x = Scale(self.frame, label="X Position", from_=0, to=500, length=200, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_x_position)
+        self.position_slider_x.place(x=550, y=660)
 
-        self.position_slider_y = Scale(self.frame, from_=0, to=400, length=250, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
-        self.position_slider_y.pack()
+        self.position_slider_y = Scale(self.frame, label="Y Position", from_=0, to=400, length=200, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
+        self.position_slider_y.place(x=550, y=725)
     
     def set_sliders(self):
         self.size_slider.set(self.fractals[self.selected_fractal].size)
@@ -121,9 +121,9 @@ class Controller:
 
     def create_box(self):
         if len(self.fractals) == 0:
-            new_box = Box(self.canvas, 150, 150, 100, 0, "#000000", True, [])
+            new_box = Box(self.canvas, 225, 150, 50, 0, "#000000", True, [])
         else:
-            new_box = Box(self.canvas, 150, 150, 100, 0, "#000000", False, [])
+            new_box = Box(self.canvas, 225, 150, 50, 0, "#000000", False, [])
         self.fractals.append(new_box)
         self.set_sliders()
         self.draw_fractal(new_box)
