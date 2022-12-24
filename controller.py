@@ -17,7 +17,7 @@ class Controller:
         menu_frame = Frame(self.frame, bg='white', highlightthickness = 10, highlightbackground="#FFD700")
         menu_canvas = Canvas(menu_frame, bg="white", height=500, width=220)
         menu_scrollbar = Scrollbar(menu_frame, orient="vertical", command=menu_canvas.yview) 
-        self.menu_container = Frame(menu_canvas)
+        self.menu_container = Frame(menu_canvas, bg='White')
         #self.menu_container.pack_propagate(0)
         
         self.menu_container.bind("<Configure>",lambda e: menu_canvas.configure(scrollregion=menu_canvas.bbox("all")))
@@ -48,21 +48,24 @@ class Controller:
         self.position_slider_y.set(self.fractals[self.selected_fractal].ypos)
 
     #fractal selection methods
-    def select_next(self):
-        if self.selected_fractal < (len(self.fractals) - 1):    
-            self.fractals[self.selected_fractal].update_selected_menu_item()
-            self.selected_fractal += 1
-            self.fractals[self.selected_fractal].update_menu_item()
-            self.fractals[self.selected_fractal].update_selected_menu_item()
-            self.set_sliders()
-    
-    def select_previous(self):
+    def select_up(self):
+        self.fractals[self.selected_fractal].switch_selection_status()
         if self.selected_fractal > 0:
-            self.fractals[self.selected_fractal].update_selected_menu_item()
             self.selected_fractal -= 1
-            self.fractals[self.selected_fractal].update_menu_item()
-            self.fractals[self.selected_fractal].update_selected_menu_item()
-            self.set_sliders()
+        else:
+            self.selected_fractal = len(self.fractals) - 1
+        self.fractals[self.selected_fractal].switch_selection_status()
+        self.set_sliders()
+
+    def select_down(self):
+        self.fractals[self.selected_fractal].switch_selection_status()
+        if self.selected_fractal < (len(self.fractals) - 1):    
+            self.selected_fractal += 1
+        else:
+            self.selected_fractal = 0
+        self.fractals[self.selected_fractal].switch_selection_status()
+        self.set_sliders()
+
 
     #fractal edit methods
     def increase_depth(self):
@@ -101,9 +104,9 @@ class Controller:
     #Fractal creation methods
     def create_sierpinski_triangle(self):
         if len(self.fractals) == 0:
-            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, '#000000', True, [])
+            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, '#000000', True, [], 'Sierpinski')
         else:
-            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, '#000000', False, [])
+            new_sierpinski = Sierpinski(self.canvas, 150, 400, 100, 0, '#000000', False, [], 'Sierpinski')
         self.fractals.append(new_sierpinski)
         self.set_sliders()
         self.draw_fractal(new_sierpinski)
@@ -111,9 +114,9 @@ class Controller:
 
     def create_koch_snowflake(self):
         if len(self.fractals) == 0:
-            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "#000000", True, [])
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "#000000", True, [], 'Koch')
         else:
-            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, '#000000', False, [])
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, '#000000', False, [], 'Koch')
         self.fractals.append(new_koch)
         self.set_sliders()
         self.draw_fractal(new_koch)
@@ -121,9 +124,9 @@ class Controller:
 
     def create_box(self):
         if len(self.fractals) == 0:
-            new_box = Box(self.canvas, 225, 150, 50, 0, "#000000", True, [])
+            new_box = Box(self.canvas, 225, 150, 50, 0, "#000000", True, [], 'Vicsek')
         else:
-            new_box = Box(self.canvas, 225, 150, 50, 0, "#000000", False, [])
+            new_box = Box(self.canvas, 225, 150, 50, 0, "#000000", False, [], 'Vicsek')
         self.fractals.append(new_box)
         self.set_sliders()
         self.draw_fractal(new_box)
@@ -140,11 +143,11 @@ class Controller:
 
     def load_fractal(self, fractal):
         if fractal['name'] == 'Sierpinski':
-            loaded_fractal = Sierpinski(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
+            loaded_fractal = Sierpinski(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, [], fractal['name']) 
         elif fractal['name'] == 'Koch':
-            loaded_fractal = Koch_Snowflake(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
+            loaded_fractal = Koch_Snowflake(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, [], fractal['name']) 
         elif fractal['name'] == 'Vicsek':
-            loaded_fractal = Box(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, []) 
+            loaded_fractal = Box(self.canvas, fractal['position'][0], fractal['position'][1], fractal['size'], fractal['depth'], fractal['color'], False, [], fractal['name']) 
         if len(self.fractals) == 0:
             loaded_fractal.is_selected = True
         self.fractals.append(loaded_fractal)
@@ -174,3 +177,11 @@ class Controller:
             loaded_data = load(json_file)
         for fractal in loaded_data:
             self.load_fractal(fractal)
+    
+    def delete_fractal(self):
+        self.fractals[self.selected_fractal].delete_menu_item()
+        self.fractals[self.selected_fractal].clear_fractal_from_canvas()
+        del self.fractals[self.selected_fractal]
+        if self.selected_fractal > len(self.fractals) - 1:
+            self.selected_fractal -= 1
+        self.fractals[self.selected_fractal].switch_selection_status()

@@ -102,10 +102,10 @@ box_button.place(x=100, y=500)
 
 #buttons for changing selection
 up_label = Label(image=up_image)
-selection_button_up = Button(fractal_frame, image=up_image, highlightbackground="#2E2252", command=controller.select_previous).pack()
+selection_button_up = Button(fractal_frame, image=up_image, highlightbackground="#2E2252", command=controller.select_up).pack()
 
 down_label = Label(image=down_image)
-selection_button_down = Button(fractal_frame, image=down_image, highlightbackground="#2E2252", command=controller.select_next).pack()
+selection_button_down = Button(fractal_frame, image=down_image, highlightbackground="#2E2252", command=controller.select_down).pack()
 
 selection_lbl = Label(fractal_frame, text="Control which\nfractal to select", font=("Verdana",13), bg="#2E2252", fg="white").pack()
 
@@ -123,6 +123,9 @@ fractal_color_button = Button(fractal_frame, text='Line Color', highlightbackgro
 #save and load buttons
 save_button = Button(fractal_frame, text='Save State', highlightbackground="#2E2252", command=controller.save_canvas).place(x=780, y=550)
 load_button = Button(fractal_frame, text='Load Prev State', highlightbackground='#2E2252', command=controller.load_canvas).place(x=780, y=600)
+
+#delete button
+delete_button = Button(fractal_frame, text='Delete', highlightbackground="#2E2252", command=controller.delete_fractal).place(x=780, y=650)
 #---------------------------------------------------------------------------------------------------------------------------------
 mainwindow.mainloop()
 

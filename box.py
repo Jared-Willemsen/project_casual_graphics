@@ -3,14 +3,8 @@ from fractal_template import *
 
 class Box(FractalTemplate):
 
-    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, lines, name="Vicsek"):
-        super().__init__(name, canvas, xpos, ypos, size, depth, color, is_selected)
-        self.lines = lines
-
     def start_box(self):
-        for line in self.lines:
-            self.canvas.delete(line) #clears canvas for re-draw 
-        self.lines.clear()
+        self.clear_fractal_from_canvas()
         self.draw_box(self.xpos, self.ypos, self.depth, self.size)
 
     def draw_box(self, x_1, y_1, depth, size):

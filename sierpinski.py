@@ -3,14 +3,9 @@ from tkinter import *
 from fractal_template import *
 
 class Sierpinski(FractalTemplate):
-    def __init__(self, canvas, xpos, ypos, size, depth, color, is_selected, lines, name = 'Sierpinski'):
-        super().__init__(name, canvas, xpos, ypos, size, depth, color, is_selected)
-        self.lines = lines
-    
+
     def start_sierpinski(self): #starts the recursive function
-        for line in self.lines:
-            self.canvas.delete(line) #clears canvas for re-draw 
-        self.lines.clear()
+        self.clear_fractal_from_canvas()
         self.draw_sierpinski(self.size, self.xpos, self.ypos, self.depth)
     
     def draw_sierpinski(self, new_size, new_xpos, new_ypos, depth):
