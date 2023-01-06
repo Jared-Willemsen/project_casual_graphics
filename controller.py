@@ -1,10 +1,12 @@
-from sierpinski import *
-from koch import *
-from box import *
 from json import dumps as dump
 from json import load 
 from tkinter import *
 from tkinter import colorchooser
+
+from sierpinski import *
+from koch import *
+from box import *
+
 
 class Controller: 
     def __init__(self, canvas, frame, fractals, max_depth=5):
@@ -41,6 +43,10 @@ class Controller:
 
         self.position_slider_y = Scale(self.frame, label="Y Position", from_=0, to=400, length=200, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
         self.position_slider_y.place(x=550, y=725)
+
+        self.file_name_entry = Entry()
+        self.file_name_entry.insert(END, 'Name')
+        self.file_name_entry.place(x=850, y=750)
     
     def set_sliders(self):
         self.size_slider.set(self.fractals[self.selected_fractal].size)
@@ -65,7 +71,6 @@ class Controller:
             self.selected_fractal = 0
         self.fractals[self.selected_fractal].switch_selection_status()
         self.set_sliders()
-
 
     #fractal edit methods
     def increase_depth(self):
@@ -164,16 +169,17 @@ class Controller:
 
     #saves fractal list
     def save_canvas(self):
+        file_name = self.file_name_entry.get()
         saved_data = []
         for fractal in self.fractals:
             saved_data.append(fractal.get_save_data())    
         json_controller = dump(saved_data)
-        with open('save_states/save_file.json', 'w') as json_file:
+        with open(f'save_states/{file_name}.json', 'w') as json_file:
             json_file.write(json_controller)
     
-    def load_canvas(self):
+    def load_canvas(self, file):
         self.clear_controller()
-        with open('save_states/save_file.json', 'r') as json_file:
+        with open(f'save_states/{file}', 'r') as json_file:
             loaded_data = load(json_file)
         for fractal in loaded_data:
             self.load_fractal(fractal)
