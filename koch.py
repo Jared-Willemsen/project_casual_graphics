@@ -3,11 +3,6 @@ from math import *
 
 from fractal_template import *
 
-# useful links: https://www.adrian.idv.hk/2017-12-20-koch/
-#               https://www.youtube.com/watch?v=CjdxjepQYCU
-# https://craftofcoding.wordpress.com/2019/11/19/recursive-patterns-the-koch-curve-i/
-# https://craftofcoding.wordpress.com/2019/11/26/recursive-patterns-the-koch-curve-ii/
-
 class Koch_Snowflake(FractalTemplate):
 
     def draw_line(self, x_0, y_0, x_1, y_1):
