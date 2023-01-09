@@ -1,4 +1,4 @@
-from math import sqrt  
+from math import sqrt, pow
 from tkinter import * 
 from fractal_template import *
 

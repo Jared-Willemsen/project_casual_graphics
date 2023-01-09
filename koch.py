@@ -1,7 +1,7 @@
 from tkinter import *
-from math import *
+from math import sqrt, pow, cos, sin, radians
 
-from fractal_template import *
+from fractal_template import FractalTemplate
 
 class Koch_Snowflake(FractalTemplate):
 

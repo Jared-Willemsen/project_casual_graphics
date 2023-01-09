@@ -3,9 +3,9 @@ from json import load
 from time import sleep
 from tkinter import *
 
-from sierpinski import *
-from koch import *
-from box import *
+from sierpinski import Sierpinski
+from koch import Koch_Snowflake
+from box import Box
 
 class Gallery:
     def __init__(self, frame, canvas, painting_label, mainwindow):

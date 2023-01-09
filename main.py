@@ -8,8 +8,6 @@
 from tkinter import *
 from tkinter import colorchooser
 from os import listdir
-
-#Files for the Controller and Gallery Class 
 from controller import Controller
 from gallery import Gallery
 
@@ -21,7 +19,7 @@ mainwindow.configure(background="#FFD700")
 
 #initialization of the Gallery window
 gallery_window = Toplevel(mainwindow)
-# gallery_window.attributes("-fullscreen", True)
+gallery_window.attributes("-fullscreen", True)
 gallery_window.configure(background="#2E2252")
 
 #background image for mainwindow and gallery
