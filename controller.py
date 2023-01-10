@@ -17,6 +17,7 @@ class Controller:
         self.selected_fractal = 0
 
         menu_frame = Frame(self.frame, bg='white', highlightthickness = 10, highlightbackground="#FFD700")
+        sliders = Frame(self.frame, highlightbackground="#FFD700", highlightthickness=5, height=300, width=200, bg="white")
         menu_canvas = Canvas(menu_frame, bg="white", height=500, width=220)
         menu_scrollbar = Scrollbar(menu_frame, orient="vertical", command=menu_canvas.yview) 
         self.menu_container = Frame(menu_canvas, bg='White')
@@ -34,19 +35,23 @@ class Controller:
         menu_scrollbar.pack(side="left", fill="y")
         # menu_scrollbar.config(command=self.menu_container.yview)
 
-        self.size_slider = Scale(self.frame, label="Size", from_=10, to=500, length=150, bg="#2E2252", 
-        fg="white", orient=HORIZONTAL, command=self.change_size)
+        self.size_slider = Scale(sliders, label="Size", from_=10, to=500, length=150, bg="white", 
+        fg="black", orient=HORIZONTAL, command=self.change_size)
         self.size_slider.pack()
 
-        self.position_slider_x = Scale(self.frame, label="X Position", from_=0, to=500, length=150, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_x_position)
+        self.position_slider_x = Scale(sliders, label="X Position", from_=0, to=500, length=150, bg="white", 
+        fg="black", orient=HORIZONTAL, command=self.change_x_position)
         self.position_slider_x.pack()
-        self.position_slider_y = Scale(self.frame, label="Y Position", from_=0, to=500, length=150, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
+        self.position_slider_y = Scale(sliders, label="Y Position", from_=0, to=500, length=150, bg="white", 
+        fg="black", orient=HORIZONTAL, command=self.change_y_position)
         self.position_slider_y.pack()
 
         self.file_name_entry = Entry()
-        self.file_name_entry.insert(END, 'Name your work')
+        self.file_name_entry.insert(END, 'Name your work!')
         self.file_name_entry.place(width=110, relx=0.6, rely=0.62)
-    
+
+        sliders.place(relx=0.46, rely=0.65)
+
     def set_sliders(self):
         self.size_slider.set(self.fractals[self.selected_fractal].size)
         self.position_slider_x.set(self.fractals[self.selected_fractal].xpos)

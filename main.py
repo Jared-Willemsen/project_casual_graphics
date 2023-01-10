@@ -21,8 +21,8 @@ mainwindow.configure(background="#FFD700")
 
 #initialization of the Gallery window
 gallery_window = Toplevel(mainwindow)
-gallery_window.attributes("-fullscreen", True)
-gallery_window.configure(background="#2E2252")
+# gallery_window.attributes("-fullscreen", True)
+gallery_window.configure(background="#ab0513")
 
 #background image for mainwindow and gallery
 background_img_canv = PhotoImage(file="background_imgs/mural.png")
@@ -30,27 +30,28 @@ background_lbl1 = Label(mainwindow, image=background_img_canv).pack()
 background_gallery = Label(gallery_window, image=background_img_canv).pack()
 
 #Frame Canvas and Label
-gallery_frame = Frame(gallery_window, highlightbackground="#FFD700", highlightthickness=10, height=1000, width=1000, bg="#2E2252")
+gallery_frame = Frame(gallery_window, highlightbackground="#FFD700", highlightthickness=10, height=1000, width=1000, bg="#ab0513")
 gallery_frame.place(relwidth=0.90,relheight=0.90, rely=0.05, relx=0.05)
 gallery_canvas = Canvas(gallery_frame, bg="white", highlightbackground="#FFD700", highlightthickness="10", height=400, width=500)
 gallery_label = Label(gallery_frame, text="FRACTAL GALLERY", 
-            font=("Verdana italic",60), bg="#2E2252", fg="white")
-painting_name = Label(gallery_frame, text='placeholder', bg="#2E2252", fg="white", font=("Verdana",60))
+            font=("Verdana italic",50), bg="#ab0513", fg="white")
+painting_name = Label(gallery_frame, text='placeholder', bg="#ab0513", fg="white", font=("Verdana",60))
 gallery_label.place(relx=0.5, rely=0.07, anchor=CENTER)
-gallery_canvas.place(relx=0.5, rely=0.41, anchor=CENTER)
-painting_name.place(relx=0.5, rely=0.755, anchor=CENTER)  
+gallery_canvas.place(relx=0.5, rely=0.45, anchor=CENTER)
+painting_name.place(relx=0.5, rely=0.9, anchor=CENTER)  
 
 #Edit frame that will include all the widgets/UI
 fractal_frame = Frame(mainwindow, highlightbackground="#FFD700", 
-                    highlightthickness=10, height=1000, width=1000, bg="#2E2252")
+                    highlightthickness=10, height=1000, width=1000, bg="#ab0513")
 fractal_frame.place(relwidth=0.90,relheight=0.90, rely=0.05, relx=0.05)
 frac_label = Label(fractal_frame, text="FRACTAL MUSEUM", 
-            font=("Verdana italic",50), bg="#2E2252", fg="white")
+            font=("Verdana italic",50), bg="#ab0513", fg="white")
 frac_label.pack()
 
-# Settings frames
+# Settings/User Customization frames 
 settings2 = Frame(fractal_frame, highlightbackground="#FFD700", highlightthickness=5, height=300, width=200, bg="white")
 settings3 = Frame(fractal_frame, highlightbackground="#FFD700", highlightthickness=5, height=300, width=200, bg="white")
+settings4 = Frame(fractal_frame, highlightbackground="#FFD700", highlightthickness=5, height=300, width=200, bg="white")
 
 #canvas that will be inside the frame for the created image
 fractal_canvas = Canvas(fractal_frame, bg="white", highlightbackground="#FFD700", highlightthickness="10", height=400, width=500)
@@ -65,20 +66,6 @@ def end_program():
 def canvas_color():
     color = colorchooser.askcolor(title="Tkinter color chooser")
     fractal_canvas.configure(bg=color[1])
-
-# repeatedly changes fractal museum label color 
-def color_switcher():
-    current = frac_label.cget('fg')
-    if current == 'red':
-        new = 'green'
-    elif current == 'green':
-        new = 'blue'
-    else:
-        new  = 'red'
-    frac_label.config(fg=new)
-    gallery_label.config(fg=new)
-    fractal_frame.after(500, color_switcher)
-color_switcher()
 
 #switching functions
 def switch_to_gallery():
@@ -135,26 +122,26 @@ down_image = PhotoImage(file='button_pictures/down_arrow.png').subsample(8,8)
 quit_image = PhotoImage(file='button_pictures/quit.png').subsample(10, 10)
 
 #buttons and labels for making a new fractal
-sierpinski = Label(fractal_frame, text="Sierpinski", font=("Verdana",15), bg="#2E2252", fg="white")
+sierpinski = Label(fractal_frame, text="Sierpinski", font=("Verdana",15), bg="#ab0513", fg="white")
 sierpinski.place(relx=0.01, rely=0.22)
 siepinski_label = Label(image=sierpinski_image)
 sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski_triangle)
 sierpinski_button.place(relx=0.1, rely=0.1)
 
-koch = Label(fractal_frame, text="Koch", font=("Verdana",15), bg="#2E2252", fg="white")
+koch = Label(fractal_frame, text="Koch", font=("Verdana",15), bg="#ab0513", fg="white")
 koch.place(relx=0.01, rely=0.47)
 koch_label = Label(image=koch_image)
 koch_button = Button(fractal_frame, image=koch_image, command=controller.create_koch_snowflake)
 koch_button.place(relx=0.1, rely=0.35)
 
-box = Label(fractal_frame, text="Vicsek/Box", font=("Verdana",15), bg="#2E2252", fg="white")
+box = Label(fractal_frame, text="Vicsek/Box", font=("Verdana",15), bg="#ab0513", fg="white")
 box.place(relx=0.01, rely=0.72)
 box_label = Label(image=box_image)
 box_button = Button(fractal_frame, image=box_image, command=controller.create_box)
 box_button.place(relx=0.1, rely=0.65)
 
 #step 1 label 
-step1_label = Label(fractal_frame, text="Step 1. Choose which fractal to display,\nYou can select any and even combine them!", font=("Verdana",12), bg="#2E2252", fg="white")
+step1_label = Label(fractal_frame, text="Step 1. Choose which fractal to display,\nYou can select any and even combine them!", font=("Verdana",12), bg="#ab0513", fg="white")
 step1_label.place(relx=0.05, rely=0.05)
 
 #step 2 labels and buttons: fractal customization
@@ -166,17 +153,16 @@ step3_label = Label(settings3, text="Step 3. Save and view\nyour work!", font=("
 step3_label.pack(padx=3, pady=3)
 
 #menu frame label
-menu_label = Label(fractal_frame, text="The fractals you have selected will show up here.\nGreen indicates you have selected that fractal", font=("Verdana",12), bg="#2E2252", fg="white").place(relx=0.74, rely=0.05)
+menu_label = Label(fractal_frame, text="The fractals you have selected will show up here.\nGreen indicates you have selected that fractal", font=("Verdana",12), bg="#ab0513", fg="white").place(relx=0.74, rely=0.05)
 
 #buttons for changing selection
+selection_lbl = Label(settings4, text="Control which\nfractal to select", font=("Verdana",13), bg="white", fg="black").pack()
+
 up_label = Label(image=up_image)
-selection_button_up = Button(fractal_frame, image=up_image, highlightbackground="#2E2252", command=controller.select_up).place(relx=0.81, rely=0.85)
+selection_button_up = Button(settings4, image=up_image, highlightbackground="white", command=controller.select_up).pack()
 
 down_label = Label(image=down_image)
-selection_button_down = Button(fractal_frame, image=down_image, highlightbackground="#2E2252", command=controller.select_down).place(relx=0.81, rely=0.9)
-
-
-selection_lbl = Label(fractal_frame, text="Control which\nfractal to select", font=("Verdana",13), bg="#2E2252", fg="white").place(relx=0.8, rely=0.8)
+selection_button_down = Button(settings4, image=down_image, highlightbackground="white", command=controller.select_down).pack()
  
 #button for choosing canvas color
 color_button = Button(settings2, text="Canvas Background", highlightbackground="white", command=canvas_color)
@@ -201,6 +187,7 @@ quit_button = Button(fractal_frame, image=quit_image, command=end_program).place
 
 settings2.place(relx=0.3, rely=0.65)
 settings3.place(relx=0.6, rely=0.7)
+settings4.place(relx=0.8, rely=0.8)
 #---------------------------------------------------------------------------------------------------------------------------------
 mainwindow.mainloop()
 
