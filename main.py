@@ -159,47 +159,48 @@ step1_label.place(relx=0.05, rely=0.05)
 
 #step 2 labels and buttons: fractal customization
 step2_label = Label(settings2, text="Step 2. Customize the\nfractal and canvas", font=("Verdana", 12), bg="white")
-step2_label.pack(padx=6, pady=6)
+step2_label.pack(padx=3, pady=3)
 
 #step 3 labels and buttons: fractal customization
 step3_label = Label(settings3, text="Step 3. Save and view\nyour work!", font=("Verdana",12), bg="white", fg="black")
-step3_label.pack(padx=6, pady=6)
+step3_label.pack(padx=3, pady=3)
 
 #menu frame label
 menu_label = Label(fractal_frame, text="The fractals you have selected will show up here.\nGreen indicates you have selected that fractal", font=("Verdana",12), bg="#2E2252", fg="white").place(relx=0.74, rely=0.05)
 
 #buttons for changing selection
 up_label = Label(image=up_image)
-selection_button_up = Button(fractal_frame, image=up_image, highlightbackground="#2E2252", command=controller.select_up).pack()
+selection_button_up = Button(fractal_frame, image=up_image, highlightbackground="#2E2252", command=controller.select_up).place(relx=0.81, rely=0.85)
 
 down_label = Label(image=down_image)
-selection_button_down = Button(fractal_frame, image=down_image, highlightbackground="#2E2252", command=controller.select_down).pack()
+selection_button_down = Button(fractal_frame, image=down_image, highlightbackground="#2E2252", command=controller.select_down).place(relx=0.81, rely=0.9)
 
-selection_lbl = Label(fractal_frame, text="Control which\nfractal to select", font=("Verdana",13), bg="#2E2252", fg="white").pack()
+
+selection_lbl = Label(fractal_frame, text="Control which\nfractal to select", font=("Verdana",13), bg="#2E2252", fg="white").place(relx=0.8, rely=0.8)
  
 #button for choosing canvas color
 color_button = Button(settings2, text="Canvas Background", highlightbackground="white", command=canvas_color)
-color_button.pack(padx=6, pady=6)
+color_button.pack(padx=3, pady=3)
 
 #buttons for changing generation
-generation_increase = Button(settings2, text='Generation +', highlightbackground="white", command=controller.increase_depth).pack(padx=6, pady=6)
-generation_decrease = Button(settings2, text='Generation -', highlightbackground="white", command=controller.decrease_depth).pack(padx=6, pady=6)
+generation_increase = Button(settings2, text='Generation +', highlightbackground="white", command=controller.increase_depth).pack(padx=3, pady=3)
+generation_decrease = Button(settings2, text='Generation -', highlightbackground="white", command=controller.decrease_depth).pack(padx=3, pady=3)
 
 #fractal line color button
-fractal_color_button = Button(settings2, text='Line Color', highlightbackground="white", command=controller.change_color).pack(padx=6, pady=6)
+fractal_color_button = Button(settings2, text='Line Color', highlightbackground="white", command=controller.change_color).pack(padx=3, pady=3)
 
 #save and load buttons
-save_button = Button(settings3, text='Save State', highlightbackground="white", command=controller.save_canvas).pack(padx=6, pady=6)
-load_button = Button(settings3, text='Gallery', highlightbackground="white", command=switch_to_gallery).pack(padx=6, pady=6)
+save_button = Button(settings3, text='Save State', highlightbackground="white", command=controller.save_canvas).pack(padx=3, pady=3)
+load_button = Button(settings3, text='Gallery', highlightbackground="white", command=switch_to_gallery).pack(padx=3, pady=3)
 
 #delete button
-delete_button_editor = Button(settings2, text='Delete Fractal', highlightbackground="white", command=controller.delete_fractal).pack(padx=6, pady=6)
+delete_button_editor = Button(settings2, text='Delete Fractal', highlightbackground="white", command=controller.delete_fractal).pack(padx=3, pady=3)
 
 quit_label = Label(image=quit_image)
 quit_button = Button(fractal_frame, image=quit_image, command=end_program).place(x=10, y=10)
 
 settings2.place(relx=0.3, rely=0.65)
-settings3.place(relx=0.6, rely=0.65)
+settings3.place(relx=0.6, rely=0.7)
 #---------------------------------------------------------------------------------------------------------------------------------
 mainwindow.mainloop()
 
