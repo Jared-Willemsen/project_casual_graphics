@@ -36,17 +36,17 @@ class Controller:
 
         self.size_slider = Scale(self.frame, label="Size", from_=10, to=500, length=150, bg="#2E2252", 
         fg="white", orient=HORIZONTAL, command=self.change_size)
-        self.size_slider.place(x=550, y=600)
+        self.size_slider.place(relx=0.45, rely=0.65)
 
         self.position_slider_x = Scale(self.frame, label="X Position", from_=0, to=500, length=150, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_x_position)
-        self.position_slider_x.place(x=550, y=660)
+        self.position_slider_x.place(relx=0.45, rely=0.75)
 
         self.position_slider_y = Scale(self.frame, label="Y Position", from_=0, to=500, length=150, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
-        self.position_slider_y.place(x=550, y=725)
+        self.position_slider_y.place(relx=0.45, rely=0.85)
 
         self.file_name_entry = Entry()
-        self.file_name_entry.insert(END, 'Name')
-        self.file_name_entry.place(width=100, relx=0.6, rely=0.68)
+        self.file_name_entry.insert(END, 'Name of your work')
+        self.file_name_entry.place(width=110, relx=0.6, rely=0.6)
     
     def set_sliders(self):
         self.size_slider.set(self.fractals[self.selected_fractal].size)
