@@ -158,7 +158,7 @@ step1_label = Label(fractal_frame, text="Step 1. Choose which fractal to display
 step1_label.place(relx=0.05, rely=0.05)
 
 #step 2 labels and buttons: fractal customization
-step2_label = Label(settings2, text="Step 2. Customize how the\nfractal and canvas look", font=("Verdana", 12), bg="white")
+step2_label = Label(settings2, text="Step 2. Customize the\nfractal and canvas", font=("Verdana", 12), bg="white")
 step2_label.pack(padx=6, pady=6)
 
 #step 3 labels and buttons: fractal customization

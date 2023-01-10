@@ -39,10 +39,10 @@ class Controller:
         self.size_slider.place(relx=0.45, rely=0.65)
 
         self.position_slider_x = Scale(self.frame, label="X Position", from_=0, to=500, length=150, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_x_position)
-        self.position_slider_x.place(relx=0.45, rely=0.75)
+        self.position_slider_x.place(relx=0.45, rely=0.7)
 
         self.position_slider_y = Scale(self.frame, label="Y Position", from_=0, to=500, length=150, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
-        self.position_slider_y.place(relx=0.45, rely=0.85)
+        self.position_slider_y.place(relx=0.45, rely=0.75)
 
         self.file_name_entry = Entry()
         self.file_name_entry.insert(END, 'Name of your work')
