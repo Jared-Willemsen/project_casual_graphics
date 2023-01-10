@@ -29,19 +29,19 @@ class Controller:
         # for i in range(50):
         #     Label(self.menu_container, text="Sample scrolling label").pack()
 
-        menu_frame.place(x=952, y=100)
+        menu_frame.place(relx=0.75, rely=0.1)
         menu_canvas.pack(side="left", fill="both", expand=True)
         menu_scrollbar.pack(side="left", fill="y")
         # menu_scrollbar.config(command=self.menu_container.yview)
 
-        self.size_slider = Scale(self.frame, label="Size", from_=10, to=500, length=200, bg="#2E2252", 
+        self.size_slider = Scale(self.frame, label="Size", from_=10, to=500, length=150, bg="#2E2252", 
         fg="white", orient=HORIZONTAL, command=self.change_size)
         self.size_slider.place(x=550, y=600)
 
-        self.position_slider_x = Scale(self.frame, label="X Position", from_=0, to=500, length=200, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_x_position)
+        self.position_slider_x = Scale(self.frame, label="X Position", from_=0, to=500, length=150, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_x_position)
         self.position_slider_x.place(x=550, y=660)
 
-        self.position_slider_y = Scale(self.frame, label="Y Position", from_=0, to=500, length=200, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
+        self.position_slider_y = Scale(self.frame, label="Y Position", from_=0, to=500, length=150, bg="#2E2252", fg='white', orient=HORIZONTAL, command=self.change_y_position)
         self.position_slider_y.place(x=550, y=725)
 
         self.file_name_entry = Entry()
