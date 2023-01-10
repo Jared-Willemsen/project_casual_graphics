@@ -178,25 +178,25 @@ selection_button_down = Button(fractal_frame, image=down_image, highlightbackgro
 selection_lbl = Label(fractal_frame, text="Control which\nfractal to select", font=("Verdana",13), bg="#2E2252", fg="white").pack()
  
 #button for choosing canvas color
-color_button = Button(settings2, text="Canvas Background", highlightbackground="#2E2252", command=canvas_color)
+color_button = Button(settings2, text="Canvas Background", command=canvas_color)
 color_button.pack(padx=6, pady=6)
 
 #buttons for changing generation
-generation_increase = Button(settings2, text='Generation +', highlightbackground="#2E2252", command=controller.increase_depth).pack(padx=6, pady=6)
-generation_decrease = Button(settings2, text='Generation -', highlightbackground="#2E2252", command=controller.decrease_depth).pack(padx=6, pady=6)
+generation_increase = Button(settings2, text='Generation +', command=controller.increase_depth).pack(padx=6, pady=6)
+generation_decrease = Button(settings2, text='Generation -', command=controller.decrease_depth).pack(padx=6, pady=6)
 
 #fractal line color button
-fractal_color_button = Button(settings2, text='Line Color', highlightbackground="#2E2252", command=controller.change_color).pack(padx=6, pady=6)
+fractal_color_button = Button(settings2, text='Line Color', command=controller.change_color).pack(padx=6, pady=6)
 
 #save and load buttons
-save_button = Button(settings3, text='Save State', highlightbackground="#2E2252", command=controller.save_canvas).pack(padx=6, pady=6)
-load_button = Button(settings3, text='Gallery', highlightbackground='#2E2252', command=switch_to_gallery).pack(padx=6, pady=6)
+save_button = Button(settings3, text='Save State', command=controller.save_canvas).pack(padx=6, pady=6)
+load_button = Button(settings3, text='Gallery', command=switch_to_gallery).pack(padx=6, pady=6)
 
 #delete button
-delete_button_editor = Button(settings2, text='Delete Fractal', highlightbackground="#2E2252", command=controller.delete_fractal).pack(padx=6, pady=6)
+delete_button_editor = Button(settings2, text='Delete Fractal', command=controller.delete_fractal).pack(padx=6, pady=6)
 
 quit_label = Label(image=quit_image)
-quit_button = Button(fractal_frame, image=quit_image, highlightbackground="#2E2252", command=end_program).place(x=10, y=10)
+quit_button = Button(fractal_frame, image=quit_image, command=end_program).place(x=10, y=10)
 
 settings2.place(relx=0.3, rely=0.65)
 settings3.place(relx=0.6, rely=0.65)
