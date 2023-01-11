@@ -14,7 +14,7 @@ class Koch_Snowflake(FractalTemplate):
 
     def start_koch(self):
         self.clear_fractal_from_canvas()
-        self.draw_koch(self.xpos, self.ypos, 500, 200, 0, self.depth)
+        self.draw_koch(self.xpos, self.ypos, (self.xpos + self.size), self.ypos, 0, self.depth)
 
     def draw_koch(self, s_x, s_y, e_x, e_y, ang, depth):
         p_x, p_y, q_x, q_y, r_x, r_y = 0, 0, 0, 0, 0, 0
