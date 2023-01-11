@@ -33,7 +33,7 @@ class Koch_Snowflake(FractalTemplate):
             q_y = p_y + length * sin(radians(ang+60+180))
             r_x = q_x + length * cos(radians(ang-60))
             r_y = q_y + length * sin(radians(ang-60+180))
-            #recursive calls that will 
+            #recursive calls that will use calculated coordinates to draw n=1 recursively until it reaches depth of 0
             self.draw_koch(s_x, s_y, p_x, p_y, ang, depth-1)
             self.draw_koch(p_x, p_y, q_x, q_y, ang+60, depth-1)
             self.draw_koch(q_x, q_y, r_x, r_y, ang-60, depth-1)

@@ -36,7 +36,7 @@ class Controller:
         menu_scrollbar.pack(side="left", fill="y")
         # menu_scrollbar.config(command=self.menu_container.yview)
 
-        self.size_slider = Scale(sliders, label="Size", from_=10, to=500, length=150, bg="white", 
+        self.size_slider = Scale(sliders, label="Size/Zoom", from_=10, to=3000, length=150, bg="white", 
         fg="black", orient=HORIZONTAL, command=self.change_size)
         self.size_slider.pack()
 
@@ -129,9 +129,9 @@ class Controller:
 
     def create_koch_snowflake(self):
         if len(self.fractals) == 0:
-            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, "#000000", True, [], 'Koch')
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 500, 0, "#000000", True, [], 'Koch')
         else:
-            new_koch = Koch_Snowflake(self.canvas, 0, 200, 5, 0, '#000000', False, [], 'Koch')
+            new_koch = Koch_Snowflake(self.canvas, 0, 200, 500, 0, '#000000', False, [], 'Koch')
         self.fractals.append(new_koch)
         self.set_sliders()
         self.draw_fractal(new_koch)
