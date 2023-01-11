@@ -28,7 +28,7 @@ splash_frame = Frame(splash_screen, highlightbackground="#FFD700",
                         highlightthickness=10, height=1000, width=1000, bg="#ab0513")
 splash_frame.place(relwidth=0.90,relheight=0.90, rely=0.05, relx=0.05)
 
-figma_img = PhotoImage(file="splash_screen\Fractal.png")
+figma_img = PhotoImage(file="splash_screen/Fractal.png")
 background_l = Label(splash_frame, image=figma_img, highlightbackground="#ab0513", highlightthickness=0, borderwidth=0).pack()
 
 def main():
@@ -145,19 +145,19 @@ def main():
     sierpinski = Label(fractal_frame, text="Sierpinski", font=("Verdana",15), bg="#ab0513", fg="white")
     sierpinski.place(relx=0.01, rely=0.22)
     siepinski_label = Label(image=sierpinski_image)
-    sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski_triangle)
+    sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski_triangle, highlightbackground="#FFD700")
     sierpinski_button.place(relx=0.1, rely=0.1)
 
     koch = Label(fractal_frame, text="Koch", font=("Verdana",15), bg="#ab0513", fg="white")
     koch.place(relx=0.01, rely=0.47)
     koch_label = Label(image=koch_image)
-    koch_button = Button(fractal_frame, image=koch_image, command=controller.create_koch_snowflake)
+    koch_button = Button(fractal_frame, image=koch_image, command=controller.create_koch_snowflake, highlightbackground="#FFD700")
     koch_button.place(relx=0.1, rely=0.35)
 
     box = Label(fractal_frame, text="Vicsek/Box", font=("Verdana",15), bg="#ab0513", fg="white")
     box.place(relx=0.01, rely=0.72)
     box_label = Label(image=box_image)
-    box_button = Button(fractal_frame, image=box_image, command=controller.create_box)
+    box_button = Button(fractal_frame, image=box_image, command=controller.create_box, highlightbackground="#FFD700")
     box_button.place(relx=0.1, rely=0.65)
 
     #step 1 label 

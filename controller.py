@@ -46,7 +46,7 @@ class Controller:
         fg="black", orient=HORIZONTAL, command=self.change_y_position)
         self.position_slider_y.pack()
 
-        self.file_name_entry = Entry()
+        self.file_name_entry = Entry(highlightbackground="#FFD700")
         self.file_name_entry.insert(END, 'Name your work!')
         self.file_name_entry.place(width=110, relx=0.6, rely=0.62)
 
