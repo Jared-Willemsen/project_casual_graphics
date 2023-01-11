@@ -3,10 +3,9 @@ from json import load
 from tkinter import *
 from tkinter import colorchooser
 
-from sierpinski import *
-from koch import *
-from box import *
-
+from sierpinski import Sierpinski
+from koch import Koch_Snowflake
+from box import Box
 
 class Controller: 
     def __init__(self, canvas, frame, fractals, max_depth=5):
@@ -49,9 +48,9 @@ class Controller:
 
         self.file_name_entry = Entry(highlightbackground="#FFD700")
         self.file_name_entry.insert(END, 'Name your work!')
-        self.file_name_entry.place(width=110, relx=0.6, rely=0.62)
+        self.file_name_entry.place(relx=0.6, rely=0.62)
 
-        sliders.place(relx=0.46, rely=0.65)
+        sliders.pack(pady=10)
 
     def set_sliders(self):
         self.size_slider.set(self.fractals[self.selected_fractal].size)

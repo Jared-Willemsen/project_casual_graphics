@@ -1,14 +1,4 @@
-# TODO Improvements: Colors of the fractal, DONE
-# highlighting selected fractal in controller view (up and down buttons), DONE
-# UI labels for clarity about use, ALMOST DONE
-# Save canvas picture as jpg
-# Save canvas animation as gyf
-# Structure Code
-# Splash Screen
-# Settings Frane
-
 from tkinter import *
-from tkinter import colorchooser
 from os import listdir
 from controller import Controller
 from gallery import Gallery
@@ -77,7 +67,7 @@ def main():
     fractal_canvas = Canvas(fractal_frame, bg="white", highlightbackground="#FFD700", highlightthickness="10", height=400, width=500)
     fractal_canvas.pack()
 
-    #Functions---------------------------------------------------------------------------------------------------------------------------
+    #Functions--------------------------------------------------------------------------------------------------------------------------->
     def end_program():
         gallery_window.destroy()
         mainwindow.destroy()
@@ -104,7 +94,7 @@ def main():
     controller = Controller(fractal_canvas, fractal_frame, [])  
     gallery = Gallery(gallery_frame, gallery_canvas, painting_name, mainwindow)
 
-    #UI ELELMENTS GALLERY----------------------------------------------------------------------------------------------------------------
+    #UI ELELMENTS GALLERY---------------------------------------------------------------------------------------------------------------->
     right_image = PhotoImage(file='button_pictures/right_arrow.png').subsample(3, 3)
     left_image = PhotoImage(file='button_pictures/left_arrow.png').subsample(3, 3)
     edit_image = PhotoImage(file='button_pictures/edit.png').subsample(3, 3)
@@ -127,7 +117,7 @@ def main():
     delete_button_gallery = Button(gallery_frame, image=delete_image, command=gallery.delete_canvas)
     delete_button_gallery.place(relx=0.8, rely=0.75)
 
-    #UI ELEMENTS EDITOR------------------------------------------------------------------------------------------------------------------
+    #UI ELEMENTS EDITOR------------------------------------------------------------------------------------------------------------------>
     #button pictures
     sierpinski_image = PhotoImage(file='fractal_pictures/sierpinski.png').subsample(3, 3)
     koch_image = PhotoImage(file='fractal_pictures/koch_snowflake.png').subsample(4, 4)
@@ -159,11 +149,11 @@ def main():
     step1_label = Label(fractal_frame, text="1. Select any fractal!", font=("Verdana",12), bg="#ab0513", fg="white")
     step1_label.place(relx=0.1, rely=0.05)
 
-    #step 2 labels and buttons: fractal customization
+    #step 2 label
     step2_label = Label(settings2, text="2. Customize\nfractal and canvas", font=("Verdana", 10), bg="white")
     step2_label.pack(padx=5, pady=5)
 
-    #step 3 labels and buttons: fractal customization
+    #step 3 label
     step3_label = Label(settings3, text="3. Save/view\nyour work!", font=("Verdana",10), bg="white", fg="black")
     step3_label.pack(padx=3, pady=3)
 

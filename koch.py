@@ -1,6 +1,5 @@
 from tkinter import *
 from math import sqrt, pow, cos, sin, radians
-
 from fractal_template import FractalTemplate
 
 class Koch_Snowflake(FractalTemplate):
@@ -26,7 +25,7 @@ class Koch_Snowflake(FractalTemplate):
             return
         #recursive case
         else:
-            #calculates coordinates using formula
+            #calculates coordinates to divide line 
             p_x = s_x + length * cos(radians(ang))
             p_y = s_y + length * sin(radians(ang+180))
             q_x = p_x + length * cos(radians(ang+60))
