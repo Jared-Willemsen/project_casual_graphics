@@ -40,8 +40,10 @@ class Gallery:
         file = self.saved_files[self.current_file] 
         with open(f'save_states/{file}', 'r') as json_file:
             loaded_data = load(json_file)
-        for fractal in loaded_data:
-            self.load_fractal(fractal)   
+        for fractal in loaded_data[0]:
+            self.load_fractal(fractal)
+        
+        self.canvas.configure(bg = loaded_data[1])   
 
     def change_label(self): #changes the label below the painting to the name of the currently selected painting.
         file_name = self.saved_files[self.current_file]
@@ -85,7 +87,7 @@ class Gallery:
         if self.current_file <= 0:
             return
         self.move_canvas_right()
-        
+
     def delete_canvas(self): # deletes a canvas
         remove(f'save_states/{self.saved_files[self.current_file]}')
         del self.saved_files[self.current_file]

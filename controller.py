@@ -11,6 +11,7 @@ from box import *
 class Controller: 
     def __init__(self, canvas, frame, fractals, max_depth=5):
         self.canvas = canvas
+        self.canvas_color = 'white'
         self.frame = frame
         self.fractals = fractals
         self.max_depth = max_depth
@@ -109,6 +110,11 @@ class Controller:
         self.fractals[self.selected_fractal].color = line_color[1]
         self.draw_fractal(self.fractals[self.selected_fractal])
         self.fractals[self.selected_fractal].update_menu_item()
+    
+        #color picker function
+    def change_canvas_color(self):
+        self.canvas_color = colorchooser.askcolor(title="Tkinter color chooser")[1]
+        self.canvas.configure(bg=self.canvas_color)
 
     #Fractal creation methods
     def create_sierpinski_triangle(self):
@@ -174,9 +180,12 @@ class Controller:
     #saves fractal list
     def save_canvas(self):
         file_name = self.file_name_entry.get()
-        saved_data = []
+        fractal_data = []
         for fractal in self.fractals:
-            saved_data.append(fractal.get_save_data())    
+            fractal_data.append(fractal.get_save_data())
+        saved_data = []
+        saved_data.append(fractal_data)
+        saved_data.append(self.canvas_color)    
         json_controller = dump(saved_data)
         with open(f'save_states/{file_name}.json', 'w') as json_file:
             json_file.write(json_controller)
@@ -185,8 +194,10 @@ class Controller:
         self.clear_controller()
         with open(f'save_states/{file}', 'r') as json_file:
             loaded_data = load(json_file)
-        for fractal in loaded_data:
+        for fractal in loaded_data[0]:
             self.load_fractal(fractal)
+        self.canvas_color = loaded_data[1]
+        self.canvas.configure(bg = self.canvas_color)
     
     def delete_fractal(self):
         self.fractals[self.selected_fractal].delete_menu_item()

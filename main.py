@@ -82,11 +82,6 @@ def main():
         gallery_window.destroy()
         mainwindow.destroy()
 
-    #color picker function
-    def canvas_color():
-        color = colorchooser.askcolor(title="Tkinter color chooser")
-        fractal_canvas.configure(bg=color[1])
-
     #switching functions
     def switch_to_gallery():
         gallery.saved_files = listdir('save_states')
@@ -185,7 +180,7 @@ def main():
     selection_button_down = Button(settings4, image=down_image, highlightbackground="white", command=controller.select_down).pack()
     
     #button for choosing canvas color
-    color_button = Button(settings2, text="Canvas Background", highlightbackground="white", command=canvas_color)
+    color_button = Button(settings2, text="Canvas Background", highlightbackground="white", command=controller.change_canvas_color)
     color_button.pack(padx=3, pady=3)
 
     #buttons for changing generation
