@@ -41,7 +41,7 @@ def main():
 
     #initialization of the Gallery window
     gallery_window = Toplevel(mainwindow)
-    # gallery_window.attributes("-fullscreen", True)
+    gallery_window.attributes("-fullscreen", True)
     gallery_window.configure(background="#ab0513")
 
     #background image for mainwindow and gallery
@@ -122,10 +122,10 @@ def main():
     left_button.place(relx=0.01, rely=0.41)
 
     edit_button = Button(gallery_frame, image=edit_image, command=switch_to_editor)
-    edit_button.place(relx=0.3, rely=0.75)
+    edit_button.place(relx=0.2, rely=0.75)
 
     delete_button_gallery = Button(gallery_frame, image=delete_image, command=gallery.delete_canvas)
-    delete_button_gallery.place(relx=0.6, rely=0.75)
+    delete_button_gallery.place(relx=0.8, rely=0.75)
 
     #UI ELEMENTS EDITOR------------------------------------------------------------------------------------------------------------------
     #button pictures
