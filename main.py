@@ -65,7 +65,7 @@ def main():
                         highlightthickness=10, height=1000, width=1000, bg="#ab0513")
     fractal_frame.place(relwidth=0.90,relheight=0.90, rely=0.05, relx=0.05)
     frac_label = Label(fractal_frame, text="FRACTAL MUSEUM", 
-                font=("Verdana italic",50), bg="#ab0513", fg="white")
+                font=("Verdana italic",37), bg="#ab0513", fg="white")
     frac_label.pack()
 
     # Settings/User Customization frames 
@@ -130,48 +130,48 @@ def main():
     #UI ELEMENTS EDITOR------------------------------------------------------------------------------------------------------------------
     #button pictures
     sierpinski_image = PhotoImage(file='fractal_pictures/sierpinski.png').subsample(3, 3)
-    koch_image = PhotoImage(file='fractal_pictures/koch_snowflake.png').subsample(3, 3)
+    koch_image = PhotoImage(file='fractal_pictures/koch_snowflake.png').subsample(4, 4)
     box_image = PhotoImage(file='fractal_pictures/box_fractal.png').subsample(3, 3)
     up_image = PhotoImage(file='button_pictures/up_arrow.png').subsample(8,8)
     down_image = PhotoImage(file='button_pictures/down_arrow.png').subsample(8,8)
     quit_image = PhotoImage(file='button_pictures/quit.png').subsample(10, 10)
 
     #buttons and labels for making a new fractal
-    sierpinski = Label(fractal_frame, text="Sierpinski", font=("Verdana",15), bg="#ab0513", fg="white")
+    sierpinski = Label(fractal_frame, text="Sierpinski", font=("Verdana",9), bg="#ab0513", fg="white")
     sierpinski.place(relx=0.01, rely=0.22)
     siepinski_label = Label(image=sierpinski_image)
     sierpinski_button = Button(fractal_frame, image=sierpinski_image, command=controller.create_sierpinski_triangle, highlightbackground="#FFD700")
     sierpinski_button.place(relx=0.1, rely=0.1)
 
-    koch = Label(fractal_frame, text="Koch", font=("Verdana",15), bg="#ab0513", fg="white")
+    koch = Label(fractal_frame, text="Koch", font=("Verdana",9), bg="#ab0513", fg="white")
     koch.place(relx=0.01, rely=0.47)
     koch_label = Label(image=koch_image)
     koch_button = Button(fractal_frame, image=koch_image, command=controller.create_koch_snowflake, highlightbackground="#FFD700")
     koch_button.place(relx=0.1, rely=0.35)
 
-    box = Label(fractal_frame, text="Vicsek/Box", font=("Verdana",15), bg="#ab0513", fg="white")
+    box = Label(fractal_frame, text="Vicsek/Box", font=("Verdana",9), bg="#ab0513", fg="white")
     box.place(relx=0.01, rely=0.72)
     box_label = Label(image=box_image)
     box_button = Button(fractal_frame, image=box_image, command=controller.create_box, highlightbackground="#FFD700")
     box_button.place(relx=0.1, rely=0.65)
 
     #step 1 label 
-    step1_label = Label(fractal_frame, text="Step 1. Choose which fractal to display,\nYou can select any and even combine them!", font=("Verdana",12), bg="#ab0513", fg="white")
-    step1_label.place(relx=0.05, rely=0.05)
+    step1_label = Label(fractal_frame, text="1. Select any fractal!", font=("Verdana",12), bg="#ab0513", fg="white")
+    step1_label.place(relx=0.1, rely=0.05)
 
     #step 2 labels and buttons: fractal customization
-    step2_label = Label(settings2, text="Step 2. Customize the\nfractal and canvas", font=("Verdana", 12), bg="white")
-    step2_label.pack(padx=3, pady=3)
+    step2_label = Label(settings2, text="2. Customize\nfractal and canvas", font=("Verdana", 10), bg="white")
+    step2_label.pack(padx=5, pady=5)
 
     #step 3 labels and buttons: fractal customization
-    step3_label = Label(settings3, text="Step 3. Save and view\nyour work!", font=("Verdana",12), bg="white", fg="black")
+    step3_label = Label(settings3, text="3. Save/view\nyour work!", font=("Verdana",10), bg="white", fg="black")
     step3_label.pack(padx=3, pady=3)
 
     #menu frame label
-    menu_label = Label(fractal_frame, text="The fractals you have selected will show up here.\nGreen indicates you have selected that fractal", font=("Verdana",12), bg="#ab0513", fg="white").place(relx=0.74, rely=0.05)
+    menu_label = Label(fractal_frame, text="Selected fractals will show up here.\nGreen means fractal is selected.", font=("Verdana",8), bg="#ab0513", fg="white").place(relx=0.74, rely=0.05)
 
     #buttons for changing selection
-    selection_lbl = Label(settings4, text="Control which\nfractal to select", font=("Verdana",13), bg="white", fg="black").pack()
+    selection_lbl = Label(settings4, text="Control which\nfractal to select", font=("Verdana",12), bg="white", fg="black").pack()
 
     up_label = Label(image=up_image)
     selection_button_up = Button(settings4, image=up_image, highlightbackground="white", command=controller.select_up).pack()
@@ -207,6 +207,6 @@ def main():
     mainwindow.mainloop()
 
 #initialization of main program from splash screen
-start_button = Button(splash_frame, text="Click to start", command=main, padx=5, pady=5, font=("Verdana", 25) )
+start_button = Button(splash_frame, text="Click to start", command=main, padx=5, pady=5, font=("Verdana", 25))
 start_button.pack(pady=10)
 mainloop()
