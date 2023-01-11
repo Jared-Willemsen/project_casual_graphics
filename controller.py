@@ -48,9 +48,9 @@ class Controller:
 
         self.file_name_entry = Entry(highlightbackground="#FFD700")
         self.file_name_entry.insert(END, 'Name your work!')
-        self.file_name_entry.place(relx=0.6, rely=0.62)
+        self.file_name_entry.place(width=110, relx=0.6, rely=0.62)
 
-        sliders.pack(pady=10)
+        sliders.place(relx=0.46, rely=0.65)
 
     def set_sliders(self):
         self.size_slider.set(self.fractals[self.selected_fractal].size)
