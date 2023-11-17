@@ -15,27 +15,23 @@ class Controller:
         self.fractals = fractals
         self.max_depth = max_depth
         self.selected_fractal = 0
-
+        
         menu_frame = Frame(self.frame, bg='white', highlightthickness = 10, highlightbackground="#FFD700")
         sliders = Frame(self.frame, highlightbackground="#FFD700", highlightthickness=5, height=300, width=200, bg="white")
         menu_canvas = Canvas(menu_frame, bg="white", height=500, width=220)
         menu_scrollbar = Scrollbar(menu_frame, orient="vertical", command=menu_canvas.yview) 
         self.menu_container = Frame(menu_canvas, bg='White')
-        #self.menu_container.pack_propagate(0)
         
         self.menu_container.bind("<Configure>",lambda e: menu_canvas.configure(scrollregion=menu_canvas.bbox("all")))
         menu_canvas.create_window((0, 0), window=self.menu_container, anchor="nw")
         menu_canvas.configure(yscrollcommand = menu_scrollbar.set)
-        
-        # for i in range(50):
-        #     Label(self.menu_container, text="Sample scrolling label").pack()
 
         menu_frame.place(relx=0.75, rely=0.1)
         menu_canvas.pack(side="left", fill="both", expand=True)
         menu_scrollbar.pack(side="left", fill="y")
         # menu_scrollbar.config(command=self.menu_container.yview)
 
-        self.size_slider = Scale(sliders, label="Size/Zoom", from_=10, to=3000, length=150, bg="white", 
+        self.size_slider = Scale(sliders, label="Size/Zoom", from_=10, to=1000, length=150, bg="white", 
         fg="black", orient=HORIZONTAL, command=self.change_size)
         self.size_slider.pack()
 

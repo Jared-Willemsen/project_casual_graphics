@@ -3,7 +3,6 @@ from math import sqrt, pow, cos, sin, radians
 from fractal_template import FractalTemplate
 
 class Koch_Snowflake(FractalTemplate):
-
     def draw_line(self, x_0, y_0, x_1, y_1):
         self.lines.append(self.canvas.create_line(x_0, y_0, x_1, y_1, fill=self.color))
     

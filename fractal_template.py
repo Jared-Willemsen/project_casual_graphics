@@ -16,9 +16,6 @@ class FractalTemplate:
     def clear_menu_item(self): #deletes all lables in its menu-item
         for object in self.menu_item.winfo_children():
             object.destroy()
-
-    def delete_menu_item(self):
-        self.menu_item.destroy()
     
     def clear_fractal_from_canvas(self):
         for line in self.lines:
@@ -52,6 +49,9 @@ class FractalTemplate:
         self.clear_menu_item()
         self.fill_menu_item()
     
+    def delete_menu_item(self):
+        self.menu_item.destroy()
+        
     def create_menu_item(self, menu_container): #creates the frame for the menu-item fills it with current values and packs it to the menu
         self.menu_item = Frame(menu_container, height=100, width=250, bg='white', highlightbackground='#333333', highlightthickness=6)
         if self.is_selected:
