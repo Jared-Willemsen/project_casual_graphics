@@ -1,2 +1,5 @@
-This is the code for the Fractal Museum, produced by Group 4, which includes members:
-Abdel Jokar, Anvitha Subbaraman, Jared Williamsen, Labros Chatz, Morris van Beeck, Shayaan Elahi
+This is a project I devolped in the first year of my HBO university study.
+We made a program where you can use fractals to make a painting and you can add it to your "Gallery".
+The UI is developed with TKinter.
+
+To start the program run Main.py
